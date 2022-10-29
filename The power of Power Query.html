@@ -44,8 +44,8 @@
 									<span class="date">July 1, 2022</span>
 									<h1>The power of Power Query</h1>
 								</header>
-								<div class="image main"><img src="images/The power of Power Query.jfif" alt="" /><br/>
-								<i>Photo Credit: Mika Baumeister</i></div>
+								<div class="image main"><img src="images/The power of Power Query.jfif" alt="" />
+								<i>Photo Credit: Mika Baumeister @ <a href="https://unsplash.com/">Unplash</a></i></div>
 								<p>In this article, I would like to introduce a tool that I use to speed up my daily work - it is called Power Query. My former manager, Nathan, explained Power Query to me when I started my first role at UTAS, and it has been a crucial item in my toolbox since then.
 								</p>
 								<p>In simple terms, Power Query is a feature in Excel that helps users to process a large amount of raw data into the desired form. The best part is that the steps in the "Query" are saved, so the next batch of data (same tabular format) can be processed within just a few clicks. The user interface is intuitive and well laid out so it is quite easy to pick up. It is substantially easier to learn than VBA. Power Query is like VBA but for dummies. Sounds too good to be true? Let me give an example.
@@ -58,22 +58,35 @@
 								</p>
 								<ul>
 									<li><b>Add column by example</b>: As the name suggests, you can add a column by giving examples of what the data should be, based on the selected column(s). For example, extracting the six digits after the first "-" in a product code or quickly assigning a code based on the product category. I find this one particularly useful when I am lazy to write a nested IF function.
+										<div class="image main"><img src="images/Column from examples, from selected columns.png" alt="" />
+										<i>Photo Credit: Microsoft @ <a href="https://learn.microsoft.com/en-us/power-query/">Microsoft Learn</a></i></div>
 									</li>
 									<li><b>Pivot/Unpivot data</b>: a use case for this feature is when you have data by month in columns but want the months to be in a single column. You can do so by using the unpivot feature.
+										<div class="image main"><img src="images/Unpivot columns (Power Query).png" alt="" />
+										<i>Photo Credit: Microsoft @ <a href="https://learn.microsoft.com/en-us/power-query/">Microsoft Learn</a></i></div>
 									</li>
 									<li><b>Merging data with Joins</b>: when you need to compare two sets of data, the Joins can help to identify which items in one data set quickly are not in the other one.
+										<div class="image main"><img src="images/Merge queries overview.png" alt="" />
+										<i>Photo Credit: Microsoft @ <a href="https://learn.microsoft.com/en-us/power-query/">Microsoft Learn</a></i></div>
 									</li>
 									<li><b>Editable steps</b>: you can change the parameters/conditions in certain steps in the Query without recreating the whole Query.
+										<div class="image main"><img src="images/Using the Applied Steps list.png" alt="" />
+										<i>Photo Credit: Microsoft @ <a href="https://learn.microsoft.com/en-us/power-query/">Microsoft Learn</a></i></div>
 									</li>
 									<li><b>Extracting data from a wide range of sources</b>: Power Query can pull data from a CSV file, a table in Excel, Excel files in a folder, data servers, and websites. You can even get data from your mailbox if you want to accurately calculate the average daily emails received as evidence to support a pay rise request.
+										<div class="image main"><img src="images/Where to get data.png" alt="" />
+										<i>Photo Credit: Microsoft @ <a href="https://learn.microsoft.com/en-us/power-query/">Microsoft Learn</a></i></div>
 									</li>
 								</ul>
 								<p>Even with all the powerful features, there are a few limitations of Power Query that you should be aware of. If you accidentally delete a step in the Query, you may ruin the whole Query. In my experience, it is rather tricky to work backward on the steps that are not editable. You need to learn the M language for this. Also, you can not switch between the current workbook and the Power Query Editor window.</p>
 								<p> If you want to explore further, I would like to suggest the Excel: Power Query (Get & Transform) course on LinkedIn Learning by Oz du Soleil or the Master Excel Power Query - Beginner to Pro course by Leila Gharani. Both of them are Microsoft Most Valuable Professional (MVP) in Excel.
 								</p>
-								<p>If you are a new graduate accountant working with a lot of transactions on a daily basis, Power Query will change your life. In case my article has not persuaded you to start learning Power Query, have a look at <a href="https://www.youtube.com/watch?v=6lBqYInBldk">this video</a> and prepare to be mind blown.
+								<p>If you are a new graduate accountant working with a lot of transactions on a daily basis, Power Query will change your life. In case my article has not persuaded you to start learning Power Query, have a look at the video below or <a href="https://www.youtube.com/watch?v=6lBqYInBldk">click here</a>, and prepare to be mind blown.
 								</p>
+								<div class="video-container">
+									<iframe src="https://www.youtube.com/embed/6lBqYInBldk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								  </div>
+								</div>
 								  
 							</section>
 
