@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>The power of Power Query</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="mentoring.html" class="logo">Mentoring</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li class="active"><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">July 1, 2022</span>
+									<h1>The power of Power Query</h1>
+								</header>
+								<div class="image main"><img src="images/The power of Power Query.jfif" alt="" /></div>
+								<p>In this article, I would like to introduce a tool that I use to speed up my daily work - it is called Power Query. My former manager, Nathan, explained Power Query to me when I started my first role at UTAS, and it has been a crucial item in my toolbox since then.
+								</p>
+								<p>In simple terms, Power Query is a feature in Excel that helps users to process a large amount of raw data into the desired form. The best part is that the steps in the "Query" are saved, so the next batch of data (same tabular format) can be processed within just a few clicks. The user interface is intuitive and well laid out so it is quite easy to pick up. It is substantially easier to learn than VBA. Power Query is like VBA but for dummies. Sounds too good to be true? Let me give an example.
+								</p>
+								<p>I inherited a report from my predecessor, where the monthly transactions needed to be sent to a program manager for categorising. I then put that data into the previous month's report, updating the source for the pivot table (summarising by category), and then checking the report sheet to see if the numbers matched the pivot table. This process was prone to errors. I could omit transactions when transferring data to the report. I could update the source for the pivot table incorrectly. If I accidentally changed/deleted a number in the raw data set, the report would be inaccurate. Moreover, the whole process took anywhere between 20-30 minutes to complete, depending on the number of mistakes.
+								</p>
+								<p>With Power Query, I easily addressed the issues above. I set up a sequence of steps where the monthly data was pulled into a separate workbook in a summarised format. I only needed to create an xlookup formula in the report tab, linking to the summarised data. I did not need to worry about transferring data and updating the pivot table. Every month, I refreshed the summarised table to automatically include the new data. It took less than 30 seconds. The data was kept separate from the report, hence it was safe from unintentional changes.
+								</p>
+								<p>This is a fairly straightforward example. There are many more ways Power Query can help to boost productivity, here are a few:
+								</p>
+								<p><b>Add column by example</b>: As the name suggests, you can add a column by giving examples of what the data should be, based on the selected column(s). For example, extracting the six digits after the first "-"" in a product code or quickly assigning a code based on the product category. I find this one particularly useful when I am lazy to write a nested IF function.
+								</p>
+								<p><b>Pivot/Unpivot data</b>: a use case for this feature is when you have data by month in columns but want the months to be in a single column. You can do so by using the unpivot feature.
+								</p>
+								<p><b>Merging data with Joins</b>: when you need to compare two sets of data, the Joins can help to identify which items in one data set quickly are not in the other one.
+								</p>
+								<p><b>Editable steps</b>: you can change the parameters/conditions in certain steps in the Query without recreating the whole Query.
+								</p>
+								<p><b>Extracting data from a wide range of sources</b>: Power Query can pull data from a CSV file, a table in Excel, Excel files in a folder, data servers, and websites. You can even get data from your mailbox if you want to accurately calculate the average daily emails received as evidence to support a pay rise request.
+								</p>
+								<p>Even with all the powerful features, there are a few limitations of Power Query that you should be aware of. If you accidentally delete a step in the Query, you may ruin the whole Query. In my experience, it is rather tricky to work backward on the steps that are not editable. You need to learn the M language for this. Also, you can not switch between the current workbook and the Power Query Editor window.</p>
+								<p> If you want to explore further, I would like to suggest the Excel: Power Query (Get & Transform) course on LinkedIn Learning by Oz du Soleil or the Master Excel Power Query - Beginner to Pro course by Leila Gharani. Both of them are Microsoft Most Valuable Professional (MVP) in Excel.
+								</p>
+								<p>If you are a new graduate accountant working with a lot of transactions on a daily basis, Power Query will change your life. In case my article has not persuaded you to start learning Power Query, have a look at <a href="https://www.youtube.com/watch?v=6lBqYInBldk">this video</a> and prepare to be mind blown.
+								</p>
+								  </div>
+								  
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
