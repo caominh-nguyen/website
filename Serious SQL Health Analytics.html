@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Serious SQL Health Analytics</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">October 30, 2022</span>
+									<h1>Serious SQL Health Analytics</h1>
+								</header>
+								<div class="image main"><img src="images/Serious SQL Health.png" alt="" />
+									<i>Photo credit: Danny Ma @ <a href="https://www.datawithdanny.com/">Data with Danny</a></i></div>
+								<p><a href="https://www.datawithdanny.com/courses/serious-sql">Introducing Serious SQL by Danny Ma - A comprehensive SQL learning experience</a></p>
+								
+								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a></p>
+								<p><b>Data desciption</b>
+									<br/>Health data measured by users using their wearables and enter into a tracking device. Columns in the data table "user_logs" in the "health" schema are:
+									<ul>
+										<li>id: id of the users</li>
+										<li>log_date: the date the record is entered</li>
+										<li>measure: the type of measures, can be weight, blood glucose and blood pressure</li>
+										<li>measure_value: measure values for weight and blood glucose</li>
+										<li>systolic and diastolyc: measure values for blood pressure</li>
+									</ul>
+								</p>
+									<div class="image main"><img src="images/Serious SQL Health data.PNG" alt="" />
+									<i>Photo credit: Danny Ma @ <a href="https://www.datawithdanny.com/">Data with Danny</a></i></div>
+									<p><b>Practice questions</b>
+									<ul>
+										<li>How many unique users exist in the logs dataset?<br/>
+											Answer: 554</li>
+				 						<li>How many duplicated records are there?<br/>
+											Answer: 19449</li>
+			 							<li>How many unquie records are there?<br/>
+											Answer: 24442</li>
+			 							<li>Who are the users with the most duplicated records?<br/>
+											Answer: 054250c692e07a9fa9e62e345231df4b54ff435d with 17279 duplicated records</li>
+										<li>How many duplicated records in each measure category?<br/>
+											Answer: blood_glucose = 18471; weight = 677; blood_pressure = 301</li>
+										<li>Ignore duplications, for weight, what are the minimum and maximum records?<br/>
+											Answer: 39642120 and 0</li>
+										<li>Ignore duplications and exclude outliers, what are the avg, median, mode, stde of weight measures?<br/>
+											Answer: mean_value/median_value/mode_value/standard_deviation = 80.76/75.98/68.49/26.91</li>
+										<li>How many total measurements do we have per user on average?<br/>
+											Answer: 79.23</li>
+										<li>What about the median number of measurements per user?<br/>
+											Answer: 2</li>
+										<li>How many users have 3 or more measurements?<br/>
+											Answer: 209</li>
+										<li>How many users have 1,000 or more measurements?<br/>
+											Answer: 5</li>
+										<li>How many users Have logged blood glucose measurements?<br/>
+											Answer: 325</li>
+										<li>How many user have at least 2 types of measurements?<br/>
+											Answer: 204</li>
+										<li>How many users have all 3 measures - blood glucose, weight and blood pressure?<br/>
+											Answer: 50</li>
+										<li>For users that have blood pressure measurements, what is the median systolic/diastolic blood pressure values?<br/>
+											Answer: 129/79</li>	
+									</ul>		
+								</p>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
