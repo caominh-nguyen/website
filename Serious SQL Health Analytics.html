@@ -63,35 +63,222 @@
 									<i>Photo credit: Danny Ma @ <a href="https://www.datawithdanny.com/">Data with Danny</a></i></div>
 									<p><b>Practice questions</b>
 									<ul>
-										<li>How many unique users exist in the logs dataset?<br/>
+										<li><b>How many unique users exist in the logs dataset?</b><br/>
+											select<br/>
+    										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (distinct (id)) as unique_id<br/>
+											from health.user_logs;<br/>
 											Answer: 554</li>
-				 						<li>How many duplicated records are there?<br/>
+				 						<li><b>How many duplicated records are there?</b><br/>
+											with cte as (<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count(*) as count_records<br/>
+											from health.user_logs<br/>
+											group by<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum(count_records)<br/>
+											from cte<br/>
+											where count_records > 1;<br/>
 											Answer: 19449</li>
-			 							<li>How many unquie records are there?<br/>
+			 							<li><b>How many unquie records are there?</b><br/>
+											with cte as (<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count(*) as count_records<br/>
+											from health.user_logs<br/>
+											group by<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum(count_records)<br/>
+											from cte<br/>
+											where count_records = 1;<br/>
 											Answer: 24442</li>
-			 							<li>Who are the users with the most duplicated records?<br/>
+			 							<li><b>Who are the users with the most duplicated records?</b><br/>
+											with cte as (<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count(*) as count_records<br/>
+											from health.user_logs<br/>
+											group by<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum(count_records) as sum_records<br/>
+											from cte<br/>
+											where count_records > 1<br/>
+											group by id<br/>
+											order by sum_records desc;<br/>
 											Answer: 054250c692e07a9fa9e62e345231df4b54ff435d with 17279 duplicated records</li>
-										<li>How many duplicated records in each measure category?<br/>
+										<li><b>How many duplicated records in each measure category?</b><br/>
+											with cte as (<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count(*) as count_records<br/>
+											from health.user_logs<br/>
+											group by<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log_date,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diastolic)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum(count_records) as sum_records<br/>
+											from cte<br/>
+											where count_records > 1<br/>
+											group by measure<br/>
+											order by sum_records desc;<br/>
 											Answer: blood_glucose = 18471; weight = 677; blood_pressure = 301</li>
-										<li>Ignore duplications, for weight, what are the minimum and maximum records?<br/>
+										<li><b>Ignore duplications, for weight, what are the minimum and maximum records?</b><br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max(measure_value) as max_rec,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min(measure_value) as min_rec<br/>
+											from health.user_logs<br/>
+											where measure = 'weight';<br/>
 											Answer: 39642120 and 0</li>
-										<li>Ignore duplications and exclude outliers, what are the avg, median, mode, stde of weight measures?<br/>
+										<li><b>Ignore duplications, allocate weights in to 100 percentitles and find outliers.</b> 
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ntile(100) over (order by measure_value) as percentile<br/>
+											from health.user_logs<br/>
+											where measure = 'weight';<br/>
+											A = ouliers are out side the range of 1.8 to 201</li>
+										<li><b>Ignore duplications and exclude outliers, what are the avg, median, mode, stde of weight measures?</b><br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round(avg(measure_value), 2) as mean_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round(cast(percentile_cont(0.5) within group (order by measure_value) as numeric),2<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) as median_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round(mode() within group (order by measure_value),2) as mode_value,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round(stddev(measure_value), 2) as standard_deviation<br/>
+											from health.user_logs<br/>
+											where measure = 'weight' and (measure_value between 1.8 and 201);<br/>
 											Answer: mean_value/median_value/mode_value/standard_deviation = 80.76/75.98/68.49/26.91</li>
-										<li>How many total measurements do we have per user on average?<br/>
+										<li><b>How many total measurements do we have per user on average?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (*) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round (sum (frequency)::numeric / count (distinct id),2) as record_per_customer<br/>
+											from cte;<br/>
 											Answer: 79.23</li>
-										<li>What about the median number of measurements per user?<br/>
+										<li><b>What about the median number of measurements per user?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (*) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round(percentile_cont(0.5) within group (order by frequency)::numeric,2) as median<br/>
+											from cte; <br/>
 											Answer: 2</li>
-										<li>How many users have 3 or more measurements?<br/>
+										<li><b>How many users have 3 or more measurements?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (*) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (id)<br/>
+											from cte<br/>
+											where frequency >= 3; <br/>
 											Answer: 209</li>
-										<li>How many users have 1,000 or more measurements?<br/>
+										<li><b>How many users have 1,000 or more measurements?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (*) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (id)<br/>
+											from cte<br/>
+											where frequency >= 1000; <br/>
 											Answer: 5</li>
-										<li>How many users Have logged blood glucose measurements?<br/>
+										<li><b>How many users Have logged blood glucose measurements?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;measure,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (*) as frequency<br/>
+											from health.user_logs<br/>
+											group by id, measure)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (id)<br/>
+											from cte<br/>
+											where measure = 'blood_glucose';<br/>
 											Answer: 325</li>
-										<li>How many user have at least 2 types of measurements?<br/>
+										<li><b>How many user have at least 2 types of measurements?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (distinct measure) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (id)<br/>
+											from cte<br/>
+											where frequency >=2; <br/>
 											Answer: 204</li>
-										<li>How many users have all 3 measures - blood glucose, weight and blood pressure?<br/>
+										<li><b>How many users have all 3 measures - blood glucose, weight and blood pressure?</b><br/>
+											with cte as(<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (distinct measure) as frequency<br/>
+											from health.user_logs<br/>
+											group by id)<br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count (id)<br/>
+											from cte<br/>
+											where frequency =3;<br/>
 											Answer: 50</li>
-										<li>For users that have blood pressure measurements, what is the median systolic/diastolic blood pressure values?<br/>
+										<li><b>For users that have blood pressure measurements, what is the median systolic/diastolic blood pressure values?</b><br/>
+											select<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;percentile_cont(0.5) within group (order by systolic)::numeric as median_systolic,<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;percentile_cont(0.5) within group (order by diastolic)::numeric as median_diastolic<br/>
+											from health.user_logs<br/>
+											where (measure = 'blood_pressure') and (systolic is not null) and (diastolic is not null);<br/>
 											Answer: 129/79</li>	
 									</ul>		
 								</p>

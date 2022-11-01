@@ -52,6 +52,7 @@
 									<li>Load each CSV file to Power BI</li>
 									<li>The data model is automatically created - check the relationship between the tables</li>
 									<li>Connect a <b>date table</b></li>
+									<class="image main"><img src="images/Maven pizza diagram.PNG" alt="" />
 								</ul>	
 								</p>
 								<p><b>What days and times do we tend to be busiest?</b> See below</p>
@@ -62,6 +63,7 @@
 									<li>Column: Weekday Name</li>
 									<li>Value: order_details[quanity]</li>
 									<li>Format: conditional formatting the values to create the heat map</li>
+									<class="image main"><img src="images/Maven pizza peak period.PNG" alt="" />
 								</ul>
 									<p><b>What are our best and worst-selling pizzas?</b></p>
 								<ul>	
@@ -79,6 +81,7 @@
 									<li>Rename column to ‘Top 3 Worst Sellers’ (rename for this viz)</li>
 									<li>Filter for this viz: top N => bottom 3 => by order_details[quantity]</li>
 									<li>The worst seller is the name with the least quantity</li>
+									<class="image main"><img src="images/Maven pizza best seller.PNG" alt="" />
 								</ul>	
 								<p><b>What's our average order value?</b></p>
 								<ul>	
@@ -87,6 +90,7 @@
 									<li>Total Pizzas: Sum of order_details[quantity]</li>
 									<li>Pizzas per order: Pizzas per Order = DIVIDE(SUM('order_details'[quantity]), COUNTA('orders'[order_id]))</li>
 									<li>Sales per order: New Measure: Sales per Order = DIVIDE([Total Sales], COUNTA('orders'[order_id]))</li>
+									<class="image main"><img src="images/Maven pizza average order.PNG" alt="" />
 								</ul>
 								<p><b>How well are we utilizing our seating capacity?</b> (15 tables and 60 seats)</p>
 								<p>Assumptions:	daily capacity is 15 tables * 4 chairs * 15 business hours = 900 units; 2 customers enjoy 1 order, taking 2 chairs, finishing the order in 1 hr (hence, 1 order takes 2 units of capacity)</p>
@@ -97,19 +101,29 @@
 									<li>Remove all other columns</li>
 									<li>Create a new column and assign 900 as the values</li>
 									<li>Measure: Utilisation (Orders/Seats = DIVIDE(COUNTA('orders'[order_id]) * 2, SUM('capacity'[Index]))</li>
+									<class="image main"><img src="images/Maven pizza seat capacity.PNG" alt="" />
 								</ul>
 								<p><b>Other useful information</b></p>
+								<p>Sales by month</p>
+								<ul>	
+									<li>Line chart:</li>
+									<li>X-axis: Month of date table</li>
+									<li>Y-axis: total sales</li>
+									<class="image main"><img src="images/Maven pizza sale by month.PNG" alt="" />
+								</ul>	
 								<p>Sales by category</p>
 								<ul>	
 									<li>Pie chart:</li>
 									<li>Legend: pizza_types[category]</li>
 									<li>Values: total sales</li>
+									<class="image main"><img src="images/Maven pizza sale category.PNG" alt="" />
 								</ul>	
 								<p>Sales by size</p>
 								<ul>	
 									<li>Column chart</li>
 									<li>X-axis: pizza_types[category]</li>
 									<li>Values: total sales</li>
+									<class="image main"><img src="images/Maven pizza sale size.PNG" alt="" />
 								</ul>
 								<p>Sales by category and size</p>
 								<ul>
@@ -117,6 +131,7 @@
 									<li>Y-axis: pizza_types[category]</li>
 									<li>X-axis: total sales</li>
 									<li>Legend: pizzas[szie]</li>
+									<class="image main"><img src="images/Maven pizza category and size.PNG" alt="" />
 								</ul>	
 								<p>Most used ingredients</p>
 								<ul>
@@ -131,6 +146,7 @@
 									<li>Treemap:</li>
 									<li>Category: ingredients</li>
 									<li>Values: sum of quantity</li>
+									<class="image main"><img src="images/Maven pizza ingredients.PNG" alt="" />
 								</ul>
 								<p><b>Findings and Recommendations:</b></p>
 								<p>The top 3 best-sellers are not too far apart but the slowest seller (Brie Carre) is only half the second lowest one.
