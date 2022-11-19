@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Unicorn Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">November 27, 2022</span>
+									<h1>Maven Unicorn Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven unicorn dashboard.PNG" alt="" /></div>
+								<p><a href="https://www.mavenanalytics.io/blog/maven-unicorn-challenge">Introducing the Maven Unicorn Challenge - Full challenge details</a></p>
+								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.</p>
+								<p><b>Data description</b>
+									<br/>A unicorn company is a private company with a valuation of more than $1 billion, and today there are over 1,000 unicorn companies around the world!
+									<br/>This dataset contains a csv table with 1,074 records, one for each company.
+									<br/>Each record contains details on the company's current valuation, total funding, country of origin, industry, select investors, and the years they were founded and became unicorns.
+								</p>	
+								<p><b>Import data and data cleaning</b>
+								<ol>
+									<li>Import the csv data file using Power BI Desktop, and choose Transform data to open the Query Editor.</li>
+									<li>Valuation column: create a new column from example and replace ‘B’ with 000,000,000.</li>
+									<li>Funding column: split text by delimiter (digit to non-digit); replace ‘B’ with 000,000,000 and ‘M’ with 000,000; join the split columns together.</li>
+									<li>Change the Valuation and Funding columns to currency data type; there are some errors as some funding data is ‘Unknown’.</li>
+									<li>Duplicate the query and rename it as Investor.</li>
+									<li>Split the investor column by delimiter ‘, ‘ - note the space after the comma; select the new investor columns and unpivot other columns; group by the new investor column with count row.</li>
+									<li>Spend some time to review and rename similar investors (Ex: Sequoia Capital China and Sequoia Group are replaced with Sequoia; Accel Partners and Accel India are replaced with Accel); To save time, only replace those with more than 10 counts.</li>
+								</ol>	
+								
+								<p><b>Report layout planning</b>
+								<br/>Change the page layout to 1920*1080 for more space.
+								<br/>Map down the sections and their size before creating visualisations.
+								<br/>Tips: Choose the theme and carefully format one visualisation and duplicate it for other visualisations.
+								</p>	
+									
+								<p><b>Visualisation design</b>
+								<br/>Valuation by industry
+								<br/><class="image main"><img src="images/Maven unicorn valuation industries.PNG" alt="" />
+								<br/>Visualisation: Stack bar chart
+								<br/>Y-axis: Industry; X-axis: Sum of Valuation
+								<br/>Filter: top 5 industries by Sum of Valuation
+								<br/>	
+								<br/>Funding by industry
+								<br/><class="image main"><img src="images/Maven unicorn funding industries.PNG" alt="" />
+								<br/>Visualisation: Stack bar chart
+								<br/>Y-axis: Industry; X-axis: Sum of Funding
+								<br/>Filter: top 5 industries by Sum of Funding
+								<br/>	
+								<br/>Unicorns joined by year
+								<br/><class="image main"><img src="images/Maven unicorn timeline.PNG" alt="" />
+								<br/>Visualisation: Stack bar chart
+								<br/>Y-axis: Count of Company; X-axis: Dated Joined - Year
+								<br/>	
+								<br/>Investors by funded companies
+								<br/><class="image main"><img src="images/Maven unicorn investors.PNG" alt="" />
+								<br/>Visualisation: Horizontal bar chart 
+								<br/>Y-axis: Investor; X-axis: Sum of row counts
+								<br/>Filter: top 5 investors by Sum of row counts
+								<br/>	
+								<br/>Valuation over funding ratio
+								<br/><class="image main"><img src="images/Maven unicorn valuation by funding.PNG" alt="" />
+								<br/>Visualisation: Card
+								<br/>Measure: Valuation/Funding = SUM(Unicorn_Companies[Valuation]) / SUM(Unicorn_Companies[Funding])
+								<br/>	
+								<br/>Time taken to reach Unicorn status
+								<br/><class="image main"><img src="images/Maven unicorn year status.PNG" alt="" />
+								<br/>Visualisation: Card
+								<br/>Measure: Years to Unicorn = AVERAGEA(Unicorn_Companies[Year Joined]) - AVERAGEA(Unicorn_Companies[Year Founded])
+								<br/>	
+								<br/>Companies by city
+								<br/><class="image main"><img src="images/Maven unicorn cities.PNG" alt="" />
+								<br/>Visualisation: Stack bar chart
+								<br/>Y-axis: City; X-axis: Count of Company
+								<br/>Filter: top 10 cities by Count of Company
+								<br/>	
+								<br/>Valuation by Continent and Country
+								<br/><class="image main"><img src="images/Maven unicorn countries.PNG" alt="" />
+								<br/>Visualisation: Treemap
+								<br/>Category: Continent; Details: Country; Value: Valuation 
+								</p>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
