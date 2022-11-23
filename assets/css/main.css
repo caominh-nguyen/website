@@ -2632,6 +2632,21 @@ input, select, textarea {
 				width: 100%;
 			}
 
+
+		.image.slim {
+			display: block;
+			margin: 2.5rem 0;
+			width: 50%;
+		}
+
+			.image.fit:first-child {
+				margin-top: 0;
+			}
+
+			.image.fit img {
+				width: 50%;
+			}
+
 		.image.main {
 			display: block;
 			margin: 4rem 0;
@@ -4687,3 +4702,25 @@ input, select, textarea {
 		}
 
 	}
+
+/* Responsive youtube videos */
+
+	.video-container {
+    			overflow: hidden;
+    			position: relative;
+    			width:100%;
+			}
+
+	.video-container::after {
+    			padding-top: 56.25%;
+    			display: block;
+    			content: '';
+			}
+
+	.video-container iframe {
+    			position: absolute;
+    			top: 0;
+    			left: 0;
+    			width: 100%;
+    			height: 100%;
+			}
