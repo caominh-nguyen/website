@@ -54,97 +54,119 @@
 									<h1>Maven Pizza Challenge</h1>
 								</header>
 								<div class="image main"><img src="images/Maven Pizza Challenge result.jfif" alt="" /></div>
-								<p><a href="https://www.mavenanalytics.io/blog/maven-pizza-challenge?utm_source=linkedin&utm_campaign=pizzachallengelaunch_li_maven">Introducing the Maven Pizza Challenge - Full challenge details</a></p>
-								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.</p>
-								<p><b>Import tables</b>
-								<ul>
+								<a href="https://www.mavenanalytics.io/blog/maven-pizza-challenge?utm_source=linkedin&utm_campaign=pizzachallengelaunch_li_maven">Full challenge details</a> - Introducing the Maven Pizza Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>About the dataset</b>
+									<li>This dataset contains 4 tables in CSV format.</li>
+									<li>The Orders table contains the date & time that all table orders were placed.</li>
+									<li>The Order Details table contains the different pizzas served with each order in the Orders table, and their quantities.</li>
+									<li>The Pizzas table contains the size and price for each distinct pizza in the Order Details table, as well as its broader pizza type.
+									<li>The Pizza Types table contains details on the pizza types in the Pizzas table, including their name as it appears on the menu, the category it falls under, and its list of ingredients.</li>
+								<br/>	
+								<b>How to play the Maven Pizza Challenge</b>
+								<br/>For the Maven Pizza Challenge, I will be playing the role of a BI Consultant hired by Plato's Pizza, a Greek-inspired pizza place in New Jersey. I have been hired to help the restaurant use data to improve operations.
+								<br/>Here are some questions that I've been given by the owner:
+								<li>What days and times do we tend to be busiest?</li>
+								<li>How many pizzas are we making during peak periods?</li>
+								<li>What are our best and worst selling pizzas?</li>
+								<li>What's our average order value?</li>
+								<li>How well are we utilizing our seating capacity? (we have 15 tables and 60 seats)</li>
+								<br/>
+								<b>Import tables</b>
+								<br/>	
 									<li>Load each CSV file to Power BI</li>
 									<li>The data model is automatically created - check the relationship between the tables</li>
 									<li>Connect a <b>date table</b></li>
 								<div class="image fit"><img src="images/Maven pizza diagram.PNG" alt="" /></div>
-								</ul>	
-								</p>
-								<p><b>What days and times do we tend to be busiest?</b> See below</p>
-								<p><b>How many pizzas are we making during peak periods?</b></p>
-								<ul>
-									<li>Matrix visualisation</li>
-									<li>Rows: create a custom column in the Orders table, extracting the hour of the orders</li>
-									<li>Column: Weekday Name</li>
-									<li>Value: order_details[quanity]</li>
-									<li>Format: conditional formatting the values to create the heat map</li>
+								<br/>
+								<b>What days and times do we tend to be busiest?</b> See below
+								<br/>
+								<b>How many pizzas are we making during peak periods?</b>
+									<li>Visualisation - Matrix</li>
+									<li><b>Rows</b>: create a custom column in the Orders table, extracting the hour of the orders</li>
+									<li><b>Column</b>: Weekday Name</li>
+									<li><b>Value</b>: order_details[quanity]</li>
+									<li><b>Format</b>: conditional formatting the values to create the heat map</li>
 								<div class="image fit"><img src="images/Maven pizza peak period.PNG" alt="" /></div>
-								</ul>
-									<p><b>What are our best and worst-selling pizzas?</b></p>
-								<ul>	
+								<br/>
+								<b>What are our best and worst-selling pizzas?</b>
 									<li><b>Best Seller</b>: Visualisation - Table</li>
-									<li>1st column: pizza_type[name]</li>
+									<li><b>1st column</b>: pizza_type[name]</li>
 									<li>Rename the column to ‘Top 3 Best Sellers'</li>
-									<li>Filter for this viz: top N => top 3 => by order_details[quantity]</li>
+									<li><b>Filter for this visualisation</b>: top N => top 3 => by order_details[quantity]</li>
 									<li>The best seller is the name with the most quantity</li>
-									<li>2nd column: order_details[quantity]</li>
+									<li><b>2nd column</b>: order_details[quantity]</li>
 									<li>Rename column to ‘Units Sold’</li>
 									<li>Sort from largest to smallest</li>
-								</ul>
-								<ul>	
-									<li><b>Worst Seller</b>: Copy + Paste the above viz:</li>
+								<br/>
+									<li><b>Worst Seller</b>: Copy + Paste the visualisation from above</li>
 									<li>Rename column to ‘Top 3 Worst Sellers’ (rename for this viz)</li>
-									<li>Filter for this viz: top N => bottom 3 => by order_details[quantity]</li>
+									<li><b>Filter for this visualisation</b>: top N => bottom 3 => by order_details[quantity]</li>
 									<li>The worst seller is the name with the least quantity</li>
 								<div class="image fit"><img src="images/Maven pizza best seller.PNG" alt="" /></div>
-								</ul>	
-								<p><b>What's our average order value?</b></p>
-								<ul>	
-									<li>Total Sales: New Measure: Total Sales = SUMX(order_details,order_details[quantity] * RELATED(pizzas[price]))</li>
-									<li>Total Order: Max of order_details[order_id]</li>
-									<li>Total Pizzas: Sum of order_details[quantity]</li>
-									<li>Pizzas per order: Pizzas per Order = DIVIDE(SUM('order_details'[quantity]), COUNTA('orders'[order_id]))</li>
-									<li>Sales per order: New Measure: Sales per Order = DIVIDE([Total Sales], COUNTA('orders'[order_id]))</li>
+								<br/>
+								<b>What's our average order value?</b>
+								<br/>Visualisations - Cards
+								<br/><i>Total Sales: New Measure</i><pre><code>Total Sales = SUMX(
+	order_details,
+	order_details[quantity] * 
+	RELATED(pizzas[price])
+	)</code></pre>						<i>Total Order:</i> Max of order_details[order_id]
+								<br/>
+								<i>Total Pizzas:</i> Sum of order_details[quantity]
+								<br/><i>Pizzas per order: New Measure</i><pre><code>Pizzas per Order = DIVIDE(
+	SUM('order_details'[quantity]), 
+	COUNTA('orders'[order_id])
+	)</code></pre>
+								<i>Sales per order: New Measure</i><pre><code>Sales per Order = DIVIDE(
+	[Total Sales], 
+	COUNTA('orders'[order_id])
+	)</code></pre>
 								<div class="image fit"><img src="images/Maven pizza average order.PNG" alt="" /></div>
-								</ul>
-								<p><b>How well are we utilizing our seating capacity?</b> (15 tables and 60 seats)</p>
-								<p>Assumptions:	daily capacity is 15 tables * 4 chairs * 15 business hours = 900 units; 2 customers enjoy 1 order, taking 2 chairs, finishing the order in 1 hr (hence, 1 order takes 2 units of capacity)</p>
-									Create a Capacity table
-								<ul>	
+								<br/>
+								<b>How well are we utilizing our seating capacity?</b> (15 tables and 60 seats)
+								<br/>Assumptions: daily capacity is 15 tables * 4 chairs * 15 business hours = 900 units; 2 customers enjoy 1 order, taking 2 chairs, finishing the order in 1 hr (hence, 1 order takes 2 units of capacity)
+								<br/><i>Create a Capacity table</i>	
 									<li>Duplicate the Orders table</li>
 									<li>Remove duplicated values Date column</li>
 									<li>Remove all other columns</li>
 									<li>Create a new column and assign 900 as the values</li>
-									<li>Measure: Utilisation (Orders/Seats = DIVIDE(COUNTA('orders'[order_id]) * 2, SUM('capacity'[Index]))</li>
+									<li>Value: New Measure</li><pre><code>Utilisation (Orders/Seats) = DIVIDE(
+	COUNTA('orders'[order_id]) * 2, 
+	SUM('capacity'[Index])
+	)</code></pre>
 								<div class="image fit"><img src="images/Maven pizza seat capacity.PNG" alt="" /></div>
-								</ul>
-								<p><b>Other useful information</b></p>
-								<p>Sales by month</p>
-								<ul>	
-									<li>Line chart:</li>
-									<li>X-axis: Month of date table</li>
-									<li>Y-axis: total sales</li>
+								<br/>
+								<b>Other useful information</b>
+								<br/><i>Sales by month</i>
+									<li>Visualisation - Line chart</li>
+									<li><b>X-axis</b>: Month of date table</li>
+									<li><b>Y-axis</b>: total sales</li>
 								<div class="image fit"><img src="images/Maven pizza sale by month.PNG" alt="" /></div>
-								</ul>	
-								<p>Sales by category</p>
-								<ul>	
-									<li>Pie chart:</li>
-									<li>Legend: pizza_types[category]</li>
-									<li>Values: total sales</li>
+								<br/>
+								<i>Sales by category</i>
+									<li>Visualisation - Pie chart</li>
+									<li><b>Legend</b>: pizza_types[category]</li>
+									<li><b>Values</b>: total sales</li>
 								<div class="image fit"><img src="images/Maven pizza sale category.PNG" alt="" /></div>
-								</ul>	
-								<p>Sales by size</p>
-								<ul>	
-									<li>Column chart</li>
-									<li>X-axis: pizza_types[category]</li>
-									<li>Values: total sales</li>
+								<br/>	
+								<i>Sales by size</i>
+									<li>Visualisation - Column chart</li>
+									<li><b>X-axis</b>: pizza_types[category]</li>
+									<li><b>Values</b>: total sales</li>
 								<div class="image fit"><img src="images/Maven pizza sale size.PNG" alt="" /></div>
-								</ul>
-								<p>Sales by category and size</p>
-								<ul>
-									<li>Stacked bar chart</li>
-									<li>Y-axis: pizza_types[category]</li>
-									<li>X-axis: total sales</li>
-									<li>Legend: pizzas[szie]</li>
+								<br/>
+								<i>Sales by category and size</i>
+									<li>Visualisation - Stacked bar chart</li>
+									<li><b>Y-axis</b>: pizza_types[category]</li>
+									<li><b>X-axis</b>: total sales</li>
+									<li><b>Legend</b>: pizzas[szie]</li>
 								<div class="image fit"><img src="images/Maven pizza category and size.PNG" alt="" /></div>
-								</ul>	
-								<p>Most used ingredients</p>
-								<ul>
-									<li>New table - ingredients:</li>
+								<br/>	
+								<i>Most used ingredients</i>
+									<li>New table - ingredients</li>
 									<li>Duplicate the order_details table</li>
 									<li>Add a new column extracting the pizza_type_id by removing the size in the pizza_id column</li>
 									<li>Merge as a new table with the pizza_types table via pizza_type_id column</li>
@@ -152,25 +174,33 @@
 									<li>Delimit the ingredients column using “, “ as the delimiter</li>
 									<li>Remove all columns except the quantity and ingredient column</li>
 									<li>Select quantity column, pivot other columns - rename the new column to ingredients</li>
-									<li>Treemap:</li>
-									<li>Category: ingredients</li>
-									<li>Values: sum of quantity</li>
+									<li>Visualisation - Treemap</li>
+									<li><b>Category</b>: ingredients</li>
+									<li><b>Values</b>: sum of quantity</li>
 								<div class="image fit"><img src="images/Maven pizza ingredients.PNG" alt="" /></div>
-								</ul>
-								<p><b>Findings and Recommendations:</b></p>
-								<p>The top 3 best-sellers are not too far apart but the slowest seller (Brie Carre) is only half the second lowest one.
-								<i>Remove the Brie Carre due to low volume, and also reduce the complexity of inventory management.</i></p>
-								<p>Three peak periods during a week: weekday lunches; weekday dinners; the evening of Friday and Saturday.
-								<i>Need to ensure appropriate staffing during these periods.</i></p>
-								<p>There are insignificant orders before 11 am and after 22 pm.
-								<i>Reduce trading hours to 11 am to 22 pm to reduce costs.</i></p>
-								<p>The utilisation rate is very low, hovering around 13%.
-								<i>Run marketing campaigns to attract more customers or rearrange the underutilised areas for other purposes.</i></p>
-								<p>The average order size is 2.32 per pizza.
-								<i>Likely to be ordered by couples or families, hence, focus on these groups of customers during advertising</i></p>
-								<p>Almost no order in XL and XXL size while L size takes 45% of total sales.
-								<i>Do not remove XL and XXL sizes, they act as distractions, so people will order L-size pizzas, the biggest revenue generator.</i></p>
-								<p>Seek bulk discounts where possible on the most commonly used ingredients.</p>
+								<br/>
+								<b>Findings and Recommendations</b>
+								<li>The top 3 best-sellers are not too far apart but the slowest seller (Brie Carre) is only half the second lowest one.
+								<br/><i>Recommendation: Remove the Brie Carre due to low volume, and also reduce the complexity of inventory management.</i>
+								</li>
+								<li>Three peak periods during a week: weekday lunches; weekday dinners; the evening of Friday and Saturday. Peak selling periods conincide with national holidays.
+								<br/><i>Recommendation: Need to ensure appropriate staffing during these periods.</i>
+								</li>
+								<li>There are insignificant orders before 11 am and after 22 pm.
+								<br/><i>Recommendation: Reduce trading hours to 11 am to 22 pm to reduce costs.</i>
+								</li>
+								<li>The utilisation rate is very low, hovering around 13%.
+								<br/><i>Recommendation: Run marketing campaigns to attract more customers or rearrange the underutilised areas for other purposes.</i>
+								</li>
+								<li>The average order size is 2.32 per pizza.
+								<br/><i>Recommendation: Typical customers are likely to be ordered by couples or families, hence, focus on these groups of customers during advertising.</i>
+								</li>
+								<li>Almost no order in XL and XXL size while L size takes 45% of total sales.
+								<br/><i>Recommendation: Do not remove XL and XXL sizes, they act as distractions, so people will order L-size pizzas, the biggest revenue generator.</i>
+								</li>
+								<li>There are great differences in volume of most used and least used ingredients.
+								<br/><i>Recommendation: Seek bulk discounts where possible on the most commonly used ingredients, while removing pizza associated with the least used ingredients for better inventory management.</i>
+								</li>
 							</section>
 
 					</div>

@@ -55,130 +55,91 @@
 								</header>
 								<div class="image main"><img src="images/sql-practice ERD.JPG" alt="" />
 									<i>Photo credit: Boolean Algebra @ <a href="https://www.sql-practice.com/">SQL-practice.com</a></i></div>
-								<p>Boolean Algebra generously created SQL-practice.com for SQL students to hone their skills.</p>
-								
-								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including final codes.</p>
-								<p><b>Data description</b>
-									<br/>The data set contains four table as illustrated in the ERD above. I have screenshoted a portion of each table below for ease of understanding. The question focus on select, order by, distinct, in, like, where, count, max.
+								Boolean Algebra generously created SQL-practice.com for SQL students to hone their skills.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including final codes.
+								<br/>
+								<br/><b>About the dataset</b>
+									<br/>The data set contains four table as illustrated in the ERD above. Screenshots of the tables are below. The questions focus on select, order by, distinct, in, like, where, count, max.
 										
 										<div class="image main"><img src="images/sql-practice admissions table.PNG" alt="" />Admissions table</div>
 										<div class="image main"><img src="images/sql-practice patients table.PNG" alt="" />Patients table</div>
 										<div class="image main"><img src="images/sql-practice physicians table.PNG" alt="" />Physicians table</div>
 										<div class="image main"><img src="images/sql-practice provice table.PNG" alt="" />Province_names table</div>	
-								</p>
-										<b>1. Show first name, last name, and gender of patients who's gender is 'M'.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										gender<br/>
-										from patients<br/>
-										where gender like "M";<br/>
-										<b>2. Show first name and last name of patients who does not have allergies(null).</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name<br/>
-										from patients<br/>
-										where allergies is null;<br/>
-										<b>3. Show first name of patients that start with the letter 'C'.</b><br/>
-										select first_name<br/>
-										from patients<br/>
-										where first_name like "C%";<br/>
-										<b>4. Show first name and last name of patients that weight within the range of 100 to 120 (inclusive).</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name<br/>
-										from patients<br/>
-										where weight between 100 and 120;<br/>
-										<b>5. Update the patients table for the allergies column. If the patient's allergies is null then replace it with 'NKA'.</b><br/>
-										update patients<br/>
-										set allergies = "NKA"<br/>
-										where allergies is null;<br/>
-										<b>6. Show first name and last name concatinated into one column to show their full name.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										concat(first_name, " ",last_name) as full_name<br/>
-										from patients;<br/>
-										<b>7. Show first name, last name, and the full province name of each patient. Example: 'Ontario' instead of 'ON'.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										patients.first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										patients.last_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										province_names.province_name<br/>
-										from patients<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										inner join province_names on patients.province_id = province_names.province_id;<br/>
-										<b>8. Show how many patients have a birth_date with 2010 as the birth year.</b><br/>
-										select count(year(birth_date))<br/>
-										from patients<br/>
-										where year(birth_date) = 2010;<br/>
-										<b>9. Show the first_name, last_name, and height of the patient with the greatest height.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										height<br/>
-										from patients<br/>
-										order by height desc<br/>
-										limit 1;<br/>
-										<b>10. Show all columns for patients who have one of the following patient_ids: 1,45,534,879,1000.</b><br/>
-										select *<br/>
-										from patients<br/>
-										where<br/>
-										patient_id in (1, 45, 534, 879, 1000);<br/>
-										<b>11. Show the total number of admissions.</b><br/>
-										select count(*)<br/>
-										from admissions;<br/>
-										<b>12. Show all the columns from admissions where the patient was admitted and discharged on the same day.</b><br/>
-										select *<br/>
-										from admissions<br/>
-										where admission_date = discharge_date;<br/>
-										<b>13. Show the total number of admissions for patient_id 579.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										patient_id,<br/>
-										count(*)<br/>
-										from admissions<br/>
-										where patient_id = 579;<br/>
-										<b>14. Based on the cities that our patients live in, show unique cities that are in province_id 'NS'?</b><br/>
-										select distinct(patients.city)<br/>
-										from patients<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										inner join province_names on patients.province_id = province_names.province_id<br/>
-										where<br/>
-										province_names.province_id = 'NS';<br/>
-										<b>15. Write a query to find the first_name, last name and birth date of patients who have height more than 160 and weight more than 70.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										birth_date<br/>
-										from patients<br/>
-										where height > 160 and weight > 70;<br/>
-										<b>16. Write a query to find list of patients first_name, last_name, and allergies from Hamilton where allergies are not null.</b><br/>
-										select<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										first_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										last_name,<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										allergies<br/>
-										from patients<br/>
-										where<br/>
-										city = 'Hamilton'<br/>
-										and allergies not null;<br/>
+						
+										<b>1. Show first name, last name, and gender of patients who's gender is 'M'.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	gender
+from patients
+where gender like "M";</code></pre>
+										<b>2. Show first name and last name of patients who does not have allergies(null).</b><br/><pre><code>select
+	first_name,
+	last_name
+from patients
+where allergies is null;</code></pre>
+										<b>3. Show first name of patients that start with the letter 'C'.</b><br/><pre><code>select first_name
+from patients
+where first_name like "C%";</code></pre>
+										<b>4. Show first name and last name of patients that weight within the range of 100 to 120 (inclusive).</b><br/><pre><code>select
+	first_name,
+	last_name
+from patients
+where weight between 100 and 120;</code></pre>
+										<b>5. Update the patients table for the allergies column. If the patient's allergies is null then replace it with 'NKA'.</b><br/><pre><code>update patients
+	set allergies = "NKA"
+where allergies is null;</code></pre>
+										<b>6. Show first name and last name concatinated into one column to show their full name.</b><br/><pre><code>select
+	concat(first_name, " ",last_name) as full_name
+from patients;</code></pre>
+										<b>7. Show first name, last name, and the full province name of each patient. Example: 'Ontario' instead of 'ON'.</b><br/><pre><code>select
+	patients.first_name,
+	patients.last_name,
+	province_names.province_name
+from patients inner join province_names on 
+	patients.province_id = province_names.province_id;</code></pre>
+										<b>8. Show how many patients have a birth_date with 2010 as the birth year.</b><br/><pre><code>select count(year(birth_date))
+from patients
+where year(birth_date) = 2010;</code></pre>
+										<b>9. Show the first_name, last_name, and height of the patient with the greatest height.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	height
+from patients
+order by height desc
+limit 1;</code></pre>
+										<b>10. Show all columns for patients who have one of the following patient_ids: 1,45,534,879,1000.</b><br/><pre><code>select *
+from patients
+where
+	patient_id in (1, 45, 534, 879, 1000);</code></pre>
+										<b>11. Show the total number of admissions.</b><br/><pre><code>select count(*)
+from admissions;</code></pre>
+										<b>12. Show all the columns from admissions where the patient was admitted and discharged on the same day.</b><br/><pre><code>select *
+from admissions
+where admission_date = discharge_date;</code></pre>
+										<b>13. Show the total number of admissions for patient_id 579.</b><br/><pre><code>select
+	patient_id,
+	count(*)
+from admissions
+where patient_id = 579;</code></pre>
+										<b>14. Based on the cities that our patients live in, show unique cities that are in province_id 'NS'?</b><br/><pre><code>select distinct(patients.city)
+from patients inner join province_names on 
+	patients.province_id = province_names.province_id
+where
+province_names.province_id = 'NS';</code></pre>
+										<b>15. Write a query to find the first_name, last name and birth date of patients who have height more than 160 and weight more than 70.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	birth_date
+from patients
+where height > 160 and weight > 70;</code></pre>
+										<b>16. Write a query to find list of patients first_name, last_name, and allergies from Hamilton where allergies are not null.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	allergies
+from patients
+where
+	city = 'Hamilton' and 
+	allergies not null;</code></pre>
 							</section>
 
 					</div>

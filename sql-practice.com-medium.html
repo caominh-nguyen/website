@@ -55,265 +55,198 @@
 								</header>
 								<div class="image main"><img src="images/sql-practice ERD.JPG" alt="" />
 									<i>Photo credit: Boolean Algebra @ <a href="https://www.sql-practice.com/">SQL-practice.com</a></i></div>
-								<p>Boolean Algebra generously created SQL-practice.com for SQL students to hone their skills.</p>
-								
-								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including final codes.</p>
-								<p><b>Data description</b>
+								Boolean Algebra generously created SQL-practice.com for SQL students to hone their skills.<br/>
+								<a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including final codes.</p>
+								<br/>
+								<br/><b>About the dataset</b>
 									<br/>The data set contains four table as illustrated in the ERD above. I have screenshoted a portion of each table below for ease of understanding. The questions on medium level often require a join and/or complex WHERE functions.
 										
 										<div class="image main"><img src="images/sql-practice admissions table.PNG" alt="" />Admissions table</div>
 										<div class="image main"><img src="images/sql-practice patients table.PNG" alt="" />Patients table</div>
 										<div class="image main"><img src="images/sql-practice physicians table.PNG" alt="" />Physicians table</div>
 										<div class="image main"><img src="images/sql-practice provice table.PNG" alt="" />Province_names table</div>	
-								</p>
-									<b>1. Show unique birth years from patients and order them by ascending.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									distinct(year(birth_date)) as birth_year<br/>
-									from patients<br/>
-									order by birth_year asc;<br/>
-									<b>2. Show unique first names from the patients table which only occurs once in the list. For example, if two or more people are named 'John' in the first_name column then don't include their name in the output list. If only 1 person is named 'Leo' then include them in the output.</b><br/>
-									with cte as (<br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									distinct(first_name) as name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count (*) as records<br/>
-									from patients<br/>
-									group by name<br/>
-									having records = 1)<br/>
-									select name<br/>
-									from cte;<br/>
-									<b>3. Show patient_id and first_name from patients where their first_name start and ends with 's' and is at least 6 characters long.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									patient_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name<br/>
-									from patients<br/>
-									where<br/>
-									first_name like "s%s"<br/>
-									and len(first_name) >= 6;								<br/>
-									<b>4. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									a.patient_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									a.first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									a.last_name<br/>
-									from patients a<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									inner join admissions b on a.patient_id = b.patient_id<br/>
-									where b.diagnosis = 'Dementia';								<br/>
-									<b>5. Display every patient's first_name. Order the list by the length of each name and then by alphbetically.</b><br/>
-									select first_name<br/>
-									from patients<br/>
-									order by<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									len(first_name),<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name;								<br/>
-									<b>6. Show the total amount of male patients and the total amount of female patients in the patients table. Display the two results in the same row.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(case when gender = "M" then gender end) as male_count,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(case when gender = "F" then gender end) as female_count<br/>
-									from patients;								<br/>
-									<b>7. Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'. Show results ordered ascending by allergies then by first_name then by last_name.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									last_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									allergies<br/>
-									from patients<br/>
-									where<br/>
-									allergies in('Penicillin', 'Morphine')<br/>
-									order by<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									allergies,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									last_name;<br/>
-									<b>8. Show patient_id, diagnosis from admissions. Find patients admitted multiple times for the same diagnosis.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									patient_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									diagnosis<br/>
-									from admissions<br/>
-									group by<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									patient_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									diagnosis<br/>
-									having count(*) > 1;								<br/>
-									<b>9. Show the city and the total number of patients in the city. Order from most to least patients and then by city name ascending.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									city,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(*)<br/>
-									from patients<br/>
-									group by city<br/>
-									order by<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count (*) desc,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									city asc;								<br/>
-									<b>10. Show first name, last name and role of every person that is either patient or physician. The roles are either "Patient" or "Physician".</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									last_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									"Patient" as role<br/>
-									from patients<br/>
-									union all<br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									last_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									"Physician" as role<br/>
-									from physicians;					<br/>
-									<b>11. Show all allergies ordered by popularity. Remove NULL values from query.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									allergies,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(*) as records<br/>
-									from patients<br/>
-									group by allergies<br/>
-									having allergies not null<br/>
-									order by records desc;								<br/>
-									<b>12.Show all patient's first_name, last_name, and birth_date who were born in the 1970s decade. Sort the list starting from the earliest birth_date.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									last_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									birth_date<br/>
-									from patients<br/>
-									where<br/>
-									year(birth_date) between 1970 and 1979<br/>
-									order by birth_date;														<br/>
-									<b>13. We want to display each patient's full name in a single column. Their last_name in all upper letters must appear first, then first_name in all lower case letters. Separate the last_name and first_name with a comma. Order the list by the first_name in decending order. EX: SMITH,jane</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									concat(upper(last_name), ",", lower(first_name))<br/>
-									from patients<br/>
-									order by first_name desc;							<br/>
-									<b>14. Show the province_id(s), sum of height; where the total sum of its patient's height is greater than or equal to 7,000.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									province_names.province_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									sum(patients.height) as h<br/>
-									from province_names<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									left join patients on province_names.province_id = patients.province_id<br/>
-									group by province_names.province_id<br/>
-									having h >= 7000;<br/>
-									<b>15. Show the difference between the largest weight and smallest weight for patients with the last name 'Maroni'.</b><br/>
-									select max(weight) - min(weight)<br/>
-									from patients<br/>
-									where last_name = "Maroni";<br/>
-									<b>16. Show all of the days of the month (1-31) and how many admission_dates occurred on that day. Sort by the day with most admissions to least admissions.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									day(admission_date) as date,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count (*)<br/>
-									from admissions<br/>
-									group by date<br/>
-									order by count(*) desc;<br/>
-									<b>17. Show all columns for patient_id 542's most recent admission_date.</b><br/>
-									select *<br/>
-									from admissions<br/>
-									where patient_id = 542<br/>
-									order by admission_date desc<br/>
-									limit 1;<br/>
-									<b>18. Show patient_id, attending_physician_id, and diagnosis for admissions that match one of the two criteria:<br/><
+								<br/>
+									<b>1. Show unique birth years from patients and order them by ascending.</b><br/><pre><code>select
+	distinct(year(birth_date)) as birth_year
+from patients
+order by birth_year asc;</code></pre>
+									<b>2. Show unique first names from the patients table which only occurs once in the list. For example, if two or more people are named 'John' in the first_name column then don't include their name in the output list. If only 1 person is named 'Leo' then include them in the output.</b><br/><pre><code>with cte as (
+	select
+		distinct(first_name) as name,
+		count (*) as records
+	from patients
+	group by name
+	having records = 1)
+select name
+from cte;</code></pre>
+									<b>3. Show patient_id and first_name from patients where their first_name starts and ends with 's' and is at least 6 characters long.</b><br/><pre><code>select
+	patient_id,
+	first_name
+from patients
+where
+	first_name like "s%s" and 
+	len(first_name) >= 6;</code></pre>
+									<b>4. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'.</b><br/><pre><code>select
+	a.patient_id,
+	a.first_name,
+	a.last_name
+from patients a inner join admissions b on 
+	a.patient_id = b.patient_id
+where b.diagnosis = 'Dementia';</code></pre>
+									<b>5. Display every patient's first_name. Order the list by the length of each name and then by alphbetically.</b><br/><pre><code>select first_name
+from patients
+order by
+	len(first_name),
+	first_name;</code></pre>
+									<b>6. Show the total amount of male patients and the total amount of female patients in the patients table. Display the two results in the same row.</b><br/><pre><code>select
+	count(case when gender = "M" 
+		then gender end) as male_count,
+	count(case when gender = "F" 
+		then gender end) as female_count
+from patients;</code></pre>
+									<b>7. Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'. Show results ordered ascending by allergies then by first_name then by last_name.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	allergies
+from patients
+where
+	allergies in('Penicillin', 'Morphine')
+order by
+	allergies,
+	first_name,
+	last_name;</code></pre>
+									<b>8. Show patient_id, diagnosis from admissions. Find patients admitted multiple times for the same diagnosis.</b><br/><pre><code>select
+	patient_id,
+	diagnosis
+from admissions
+	group by
+	patient_id,
+	diagnosis
+having count(*) > 1;</code></pre>
+									<b>9. Show the city and the total number of patients in the city. Order from most to least patients and then by city name ascending.</b><br/><pre><code>select
+	city,
+	count(*)
+from patients
+group by city
+order by
+	count (*) desc,
+	city asc;</code></pre>
+									<b>10. Show first name, last name and role of every person that is either patient or physician. The roles are either "Patient" or "Physician".</b><br/><pre><code>select
+	first_name,
+	last_name,
+	"Patient" as role
+from patients
+union all
+select
+	first_name,
+	last_name,
+	"Physician" as role
+from physicians;</code></pre>
+									<b>11. Show all allergies ordered by popularity. Remove NULL values from query.</b><br/><pre><code>select
+	allergies,
+	count(*) as records
+from patients
+group by allergies
+having allergies not null
+order by records desc;</code></pre>
+									<b>12.Show all patient's first_name, last_name, and birth_date who were born in the 1970s decade. Sort the list starting from the earliest birth_date.</b><br/><pre><code>select
+	first_name,
+	last_name,
+	birth_date
+from patients
+where year(birth_date) between 1970 and 1979
+order by birth_date;</code></pre>
+									<b>13. We want to display each patient's full name in a single column. Their last_name in all upper letters must appear first, then first_name in all lower case letters. Separate the last_name and first_name with a comma. Order the list by the first_name in decending order. EX: SMITH,jane</b><br/><pre><code>select
+	concat(
+		upper(last_name), 
+		",", 
+		lower(first_name))
+from patients
+order by first_name desc;</code></pre>
+									<b>14. Show the province_id(s), sum of height; where the total sum of its patient's height is greater than or equal to 7,000.</b><br/><pre><code>select
+	province_names.province_id,
+	sum(patients.height) as h
+from province_names left join patients on 
+	province_names.province_id = patients.province_id
+group by province_names.province_id
+having h >= 7000;</code></pre>
+									<b>15. Show the difference between the largest weight and smallest weight for patients with the last name 'Maroni'.</b><br/><pre><code>select max(weight) - min(weight)
+from patients
+where last_name = "Maroni";</code></pre>
+									<b>16. Show all of the days of the month (1-31) and how many admission_dates occurred on that day. Sort by the day with most admissions to least admissions.</b><br/><pre><code>select
+	day(admission_date) as date,
+	count (*)
+from admissions
+group by date
+order by count(*) desc;</code></pre>
+									<b>17. Show all columns for patient_id 542's most recent admission_date.</b><br/><pre><code>select *
+from admissions
+where patient_id = 542
+order by admission_date desc
+limit 1;</code></pre>
+									<b>18. Show patient_id, attending_physician_id, and diagnosis for admissions that match one of the two criteria:<br/>
 									1. patient_id is an odd number and attending_physician_id is either 1, 5, or 19.<br/>
-									2. attending_physician_id contains a 2 and the length of patient_id is 3 characters.<br/></b>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									patient_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									attending_physician_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									diagnosis<br/>
-									from admissions<br/>
-									where<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									((patient_id % 2) <> 0 and attending_physician_id in (1, 5, 19))<br/>
-									or <br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									(len(patient_id) = 3 and (attending_physician_id like "%2"<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									or attending_physician_id like "2%"));<br/>
-									<b>19. Show first_name, last_name, and the total number of admissions attended for each physician. Every admission has been attended by a physician.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									physicians.first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									physicians.last_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(admissions.patient_id)<br/>
-									from physicians<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									inner join admissions on physicians.physician_id = admissions.attending_physician_id<br/>
-									group by<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									physicians.first_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									physicians.last_name;<br/>
-									<b>20. For each physicain, display their id, full name, and the first and last admission date they attended.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									physician_id,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									concat(physicians.first_name," ",physicians.last_name) as fullname,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									max(admissions.admission_date) as last_date,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									min(admissions.admission_date) as first_date<br/>
-									from admissions<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									inner join physicians on admissions.attending_physician_id = physicians.physician_id<br/>
-									group by fullname;<br/>
-									<b>21. Display the total amount of patients for each province. Order by descending.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									province_names.province_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									count(patient_id) as records<br/>
-									from province_names<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									inner join patients on province_names.province_id = patients.province_id<br/>
-									group by province_names.province_name<br/>
-									order by records desc;<br/>
-									<b>22. For every admission, display the patient's full name, their admission diagnosis, and their physician's full name who diagnosed their problem.</b><br/>
-									select<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									admissions.diagnosis,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									concat (patients.first_name," ",patients.last_name) as patient_name,<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									concat (physicians.first_name," ",physicians.last_name  ) as physician_name<br/>
-									from (admissions inner join patients on <br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									admissions.patient_id = patients.patient_id)<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									inner join physicians on admissions.attending_physician_id = physicians.physician_id;<br/>
+									2. attending_physician_id contains a 2 and the length of patient_id is 3 characters.<br/></b><pre><code>select
+	patient_id,
+	attending_physician_id,
+	diagnosis
+from admissions
+where
+	((patient_id % 2) <> 0 and 
+	attending_physician_id in (1, 5, 19))
+	or 
+	(len(patient_id) = 3 and 
+	(attending_physician_id like "%2"
+	or 
+	attending_physician_id like "2%"));</code></pre>
+									<b>19. Show first_name, last_name, and the total number of admissions attended for each physician. Every admission has been attended by a physician.</b><br/><pre><code>select
+	physicians.first_name,
+	physicians.last_name,
+	count(admissions.patient_id)
+from physicians inner join admissions on 
+	physicians.physician_id = admissions.attending_physician_id
+group by
+	physicians.first_name,
+	physicians.last_name;</code></pre>
+									<b>20. For each physicain, display their id, full name, and the first and last admission date they attended.</b><br/><pre><code>select
+	physician_id,
+	concat(
+		physicians.first_name,
+		" ",
+		physicians.last_name
+	) as fullname,
+	max(
+		admissions.admission_date
+	) as last_date,
+	min(
+		admissions.admission_date
+	) as first_date
+from admissions inner join physicians on 
+	admissions.attending_physician_id = physicians.physician_id
+group by fullname;</code></pre>
+									<b>21. Display the total amount of patients for each province. Order by descending.</b><br/><pre><code>select
+	province_names.province_name,
+	count(patient_id) as records
+from province_names inner join patients on 
+	province_names.province_id = patients.province_id
+group by province_names.province_name
+order by records desc;</code></pre>
+									<b>22. For every admission, display the patient's full name, their admission diagnosis, and their physician's full name who diagnosed their problem.</b><br/><pre><code>select
+	admissions.diagnosis,
+	concat (
+		patients.first_name,
+		" ",
+		patients.last_name
+	) as patient_name,
+	concat (
+		physicians.first_name,
+		" ",
+		physicians.last_name
+	) as physician_name
+from (admissions inner join patients on 
+	admissions.patient_id = patients.patient_id)
+inner join physicians on 
+	admissions.attending_physician_id = physicians.physician_id;</code></pre>
 							</section>
 
 					</div>

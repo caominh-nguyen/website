@@ -54,75 +54,85 @@
 									<h1>Maven Unicorn Challenge</h1>
 								</header>
 								<div class="image main"><img src="images/Maven unicorn dashboard.PNG" alt="" /></div>
-								<p><a href="https://www.mavenanalytics.io/blog/maven-unicorn-challenge">Introducing the Maven Unicorn Challenge - Full challenge details</a></p>
-								<p><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.</p>
-								<p><b>Data description</b>
-									<br/>A unicorn company is a private company with a valuation of more than $1 billion, and today there are over 1,000 unicorn companies around the world!
-									<br/>This dataset contains a csv table with 1,074 records, one for each company.
-									<br/>Each record contains details on the company's current valuation, total funding, country of origin, industry, select investors, and the years they were founded and became unicorns.
-								</p>	
-								<p><b>Import data and data cleaning</b>
-								<ol>
+								<a href="https://www.mavenanalytics.io/blog/maven-unicorn-challenge">Full challenge details</a> - Introducing the Maven Unicorn Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>About the dataset</b>
+									<li>A unicorn company is a private company with a valuation of more than $1 billion, and today there are over 1,000 unicorn companies around the world!</li>
+									<li>This dataset contains a csv table with 1,074 records, one for each company.</li>
+									<li>Each record contains details on the company's current valuation, total funding, country of origin, industry, select investors, and the years they were founded and became unicorns.</li>
+								<br/>	
+								<b>Import data and data cleaning</b>
 									<li>Import the csv data file using Power BI Desktop, and choose Transform data to open the Query Editor.</li>
 									<li>Valuation column: create a new column from example and replace ‘B’ with 000,000,000.</li>
 									<li>Funding column: split text by delimiter (digit to non-digit); replace ‘B’ with 000,000,000 and ‘M’ with 000,000; join the split columns together.</li>
 									<li>Change the Valuation and Funding columns to currency data type; there are some errors as some funding data is ‘Unknown’.</li>
-									<li>Duplicate the query and rename it as Investor.</li>
+									<li>Duplicate the query and rename it as Investors. This is to split out the investors individually.</li>
 									<li>Split the investor column by delimiter ‘, ‘ - note the space after the comma; select the new investor columns and unpivot other columns; group by the new investor column with count row.</li>
 									<li>Spend some time to review and rename similar investors (Ex: Sequoia Capital China and Sequoia Group are replaced with Sequoia; Accel Partners and Accel India are replaced with Accel); To save time, only replace those with more than 10 counts.</li>
-								</ol>	
-								
-								<p><b>Report layout planning</b>
-								<br/>Change the page layout to 1920*1080 for more space.
-								<br/>Map down the sections and their size before creating visualisations.
-								<br/>Tips: Choose the theme and carefully format one visualisation and duplicate it for other visualisations.
-								</p>	
-									
-								<p><b>Visualisation design</b>
-								<br/>Valuation by industry
-								<br/><class="image main"><img src="images/Maven unicorn valuation industries.PNG" alt="" />
-								<br/>Visualisation: Stack bar chart
-								<br/>Y-axis: Industry; X-axis: Sum of Valuation
-								<br/>Filter: top 5 industries by Sum of Valuation
+								<br/>
+								<b>Report layout planning</b>
+								<li>Change the page layout to 1920*1080 for more space.</li>
+								<li>Map down the sections and their size before creating visualisations.</li>
+								<li>Tips: Choose the theme and carefully format one visualisation and duplicate it for other visualisations.</li>
 								<br/>	
-								<br/>Funding by industry
-								<br/><class="image main"><img src="images/Maven unicorn funding industries.PNG" alt="" />
-								<br/>Visualisation: Stack bar chart
-								<br/>Y-axis: Industry; X-axis: Sum of Funding
-								<br/>Filter: top 5 industries by Sum of Funding
-								<br/>	
-								<br/>Unicorns joined by year
-								<br/><class="image main"><img src="images/Maven unicorn timeline.PNG" alt="" />
-								<br/>Visualisation: Stack bar chart
-								<br/>Y-axis: Count of Company; X-axis: Dated Joined - Year
-								<br/>	
-								<br/>Investors by funded companies
-								<br/><class="image main"><img src="images/Maven unicorn investors.PNG" alt="" />
-								<br/>Visualisation: Horizontal bar chart 
-								<br/>Y-axis: Investor; X-axis: Sum of row counts
-								<br/>Filter: top 5 investors by Sum of row counts
-								<br/>	
-								<br/>Valuation over funding ratio
-								<br/><class="image main"><img src="images/Maven unicorn valuation by funding.PNG" alt="" />
-								<br/>Visualisation: Card
-								<br/>Measure: Valuation/Funding = SUM(Unicorn_Companies[Valuation]) / SUM(Unicorn_Companies[Funding])
-								<br/>	
-								<br/>Time taken to reach Unicorn status
-								<br/><class="image main"><img src="images/Maven unicorn year status.PNG" alt="" />
-								<br/>Visualisation: Card
-								<br/>Measure: Years to Unicorn = AVERAGEA(Unicorn_Companies[Year Joined]) - AVERAGEA(Unicorn_Companies[Year Founded])
-								<br/>	
-								<br/>Companies by city
-								<br/><class="image main"><img src="images/Maven unicorn cities.PNG" alt="" />
-								<br/>Visualisation: Stack bar chart
-								<br/>Y-axis: City; X-axis: Count of Company
-								<br/>Filter: top 10 cities by Count of Company
-								<br/>	
-								<br/>Valuation by Continent and Country
-								<br/><class="image main"><img src="images/Maven unicorn countries.PNG" alt="" />
-								<br/>Visualisation: Treemap
-								<br/>Category: Continent; Details: Country; Value: Valuation 
-								</p>
+								<br/><b>Visualisation design</b>
+								<br/><i>Valuation by industry</i>
+								<br/>Visualisation - Stack bar chart
+								<br/><b>Y-axis</b>: Industry; <b>X-axis</b>: Sum of Valuation
+								<br/><b>Filter</b>: top 5 industries by Sum of Valuation
+								<br/><b>Insight</b>: The datas act as an empirical evidence that technology-related unicorns create the most value, hence the top 4 categories are all in the tech field (Fintech, Software, E-commerce, AI). 
+								<div class="image fit"><img src="images/Maven unicorn valuation industries.PNG" alt="" /></div>
+
+								<br/><i>Funding by industry</i>
+								<br/>Visualisation - Stack bar chart
+								<br/><b>Y-axis</b>: Industry; <b>X-axis</b>: Sum of Funding
+								<br/><b>Filter</b>: top 5 industries by Sum of Funding
+								<br/><b>Insight</b>: Given the valuation of tech unicorns, there is no surprise that they also receive the most funding. Interestingly, E-Commerce and Software industries receive similar funding for unicorns but the valuation of Software unicorns is almost 40% higher than those of E-Commerce. Venture capitalists and Angel investors may take these rates of return into account when they assess future funding application. E-Commerce start-ups may find it harder to compete against Software start-ups for seed money.
+								<div class="image fit"><img src="images/Maven unicorn funding industries.PNG" alt="" /></div>
+	
+								<br/><i>Unicorns joined by year</i>
+								<br/>Visualisation - Stack bar chart
+								<br/><b>Y-axis</b>: Count of Company; <b>X-axis</b>: Dated Joined - Year
+								<br><b>Insight</b>: When the COVID 19 pandemic hit, organisations around the world looked for solutions to help them operated with employees in isolation and social distancing orders. This created a massive demand in connectivity and health related start-ups. As a result, a huge number of unicorns are born during this period to meet the unfilled demand, boosting digital transformation projects.
+								<div class="image fit"><img src="images/Maven unicorn timeline.PNG" alt="" /></div>
+	
+								<br/><i>Investors by funded companies</i>
+								<br/>Visualisation - Horizontal bar chart 
+								<br/><b>Y-axis</b>: Investor; <b>X-axis</b>: Sum of row counts
+								<br/><b>Filter</b>: top 5 investors by Sum of row counts	
+								<br/><b>Insight</b>: When seeking for funding, start-ups may want to look at these investors first. Given the number of unicorns they are involved with, they can provide expertise in management, marketing, manufacturing, distribution in addition to funding. These are quite valuable for start-ups as they often lack the relevant capabilities, leading to early failures. 
+								<br/><div class="image fit"><img src="images/Maven unicorn investors.PNG" alt="" /></div>
+
+								<br/><i>Valuation over funding ratio</i>
+								<br/>Visualisation - Card
+								<br/>Value: New Measure <pre><code>Valuation/Funding = SUM(
+	Unicorn_Companies[Valuation]) / 
+	SUM(Unicorn_Companies[Funding])</code></pre>
+								<b>Insight</b>: This is a simple average figure but start-up founders can use it as a benchmark. If they fall too far behind, investors may considering to withdraw funding.
+								<div class="image fit"><img src="images/Maven unicorn valuation by funding.PNG" alt="" /></div>
+
+								<br/><i>Time taken to reach Unicorn status</i>
+								<br/>Visualisation - Card
+								<br/>Value: New Measure<pre><code>Years to Unicorn = AVERAGEA(
+	Unicorn_Companies[Year Joined]) - 
+	AVERAGEA(Unicorn_Companies[Year Founded])</code>></pre>
+								<b>Insight</b>: Given the time required to reach unicorn status, start-up founders need to consider how they can gain access to finance in the early years, when cashflow is often in then negative territories. Venture capitalists rarely pour in funding untill the start-ups show promising returns. Potention alternatives are government grants, borrowings from family and friends, remortgaging the founders' houses.
+								<div class="image fit"><img src="images/Maven unicorn year status.PNG" alt="" /></div>
+
+								<br/><i>Companies by city</i>
+								<br/>Visualisation - Stack bar chart
+								<br/><b>Y-axis</b>: City; <b>X-axis</b>: Count of Company
+								<br/><b>Filter</b>: top 10 cities by Count of Company
+								<br/><b>Insight</b>: The USA provides the best environment for start-ups to thrive (strong legal system, establised investment environment, educated workforce). China is a good alternative due to the size of its domestic market. 
+								<div class="image fit"><img src="images/Maven unicorn cities.PNG" alt="" /></div>
+
+								<br/><i>Valuation by Continent and Country</i>
+								<br/>Visualisation - Treemap
+								<br/><b>Category</b>: Continent; <b>Details</b>: Country; <b>Value</b>: Valuation
+								<br/><b>Insight</b>: China is set to overtale the USA as the biggest economy in the world, according to some economists. However, the total size of its unicorn start-ups are dawrfed by the USA, which is a key indicator for creating values in the long-term. Hence, investing in the US economy still looks like a safer bet.
+								<div class="image fit"><img src="images/Maven unicorn countries.PNG" alt="" /></div>
 
 							</section>
 
