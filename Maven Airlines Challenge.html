@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Airlines Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">December 4, 2022</span>
+									<h1>Maven Airlines Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven airlines dashboard.JPG" alt="" /></div>
+								<a href="https://www.mavenanalytics.io/blog/maven-airlines-challenge">Full challenge details</a> - Introducing the Maven Airlines Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>About the dataset</b>
+									<li>We're looking at airline satisfaction scores for 129,880 passengers.</li>
+									<li>Each record represents one passenger.</li>
+									<li>Records contain details about passenger demographics, flight distance and delays, travel class and purpose, and ratings for factors like cleanliness, comfort, and service, as well as overall satisfaction with the airline.</li>
+								<br/>	
+								<b>How to play the Maven Airlines Challenge</b>
+									<li>For this challenge, I assuming the role of Senior Data Analyst for Maven Airlines, a US-based airline headquartered in Boston, Massachusetts. The latest passenger survey results just came in and it looks like the satisfaction rate dipped under 50% for the first time ever. The leadership team needs to take action fast, so they've brought me in to analyze the data and find the key areas to focus on for getting back on track.</li>
+								<br/>
+								<b>Import and transform data</b>
+									<li>Import the table into PowerBI, choose Transfrom data.</li>
+									<li>Create an additional column to categorise age groups.</li>
+									<li>Create an additional column to categorise travel distance (short/medium/long haul).</li>
+								These steps are essential to breakdown the demographic of customers.
+									<li>Duplicate the query and rename as rating; remove all columns except ID, the Criteria columns and the Satisfaction column.</li>
+									<li>Unpivot the Criteria columns, load data into the data model, connect the two tables via ID.</li>
+								In the original table, I find it rather difficult to compare the overall rating of all the criteria. Hence, I created an additional table.</li>
+								<div class="image fit"><img src="images/Maven airlines data model.JPG" alt="" /></div>	
+								<b>Visual design</b>
+								<br/>The report template is divided into three sections. From left to right, the first section is a breakdown of customers based on the characteristic columns. This section provides an overview of the customers, also acting as slicer for the rest of the report through the cross filtering function. The second section summarises all the criteria based on their given scores. Cross checking the information in the first and second sections will reveal the linked between poor performing criteria and the relevant customer groups. From here, we can develop tailor solutions to address the bottom criteria. The third and final section looks at time delay to find out more about relationship between delay and satisfaction level.
+								<br/>	
+								<br/><b>Customer breakdown</b>
+								<br/><i>Overall Satisfaction level</i>
+								<br/>Visualisation - Card
+								<br/><b>Field</b>: New Measure<pre><code>Satisfaction Level = DIVIDE(
+CALCULATE(
+	COUNT(
+		airline_passenger_satisfaction[Satisfaction]), 
+		airline_passenger_satisfaction[Satisfaction] = "Satisfied")
+	), 
+	COUNT(airline_passenger_satisfaction[ID])
+)</code></pre>
+								<i>Survey Responses</i>
+								<br/>Visualisation - Card
+								<br/><b>Filed</b>: count of ID from satisfaction table
+								<br/>	
+								<br/><i>Customer Demographic</i>
+								<br/>Visualisations - Multi row card
+								<br/><b>Fields</b>: % of count of ID and the characteristic columns
+								<br/>	
+								<div class="image fit"><img src="images/Maven airlines profile.JPG" alt="" /></div>	
+								By clicking on each customer group, we can view the group’s overall satisfaction level. This determine the focus when analysing the second section. Insights:
+								<br/>Customer Groups that have satisfaction score below average are:
+									<li>Short-haul travelers (34%)</li>
+									<li>First-timers (24%)</li>
+									<li>Economy/Economy+ (20%)</li>
+									<li><b>Senior citizens (18%)</b></li>
+									<li><b>Young children (1-14) (14%)</b></li>
+									<li><b>Personal travelers (10%)</b></li>
+								<b>Business</b> and <b>Business Class</b> travelers are those return high satisfaction scores. The airline may want to consider positioning deeper in the <b>Business Travel segment</b> with more <b>perks and features</b> catering for Business customers.	 
+								<br/>There was little difference in feedback from Male and Female customers.
+								<br/>
+								<br/><b>Rating Summary</b>
+								<br/>Visualisation - Stacked Bar Chart
+								<br/><b>Y-axis</b>: Criteria column from rating table; <b>X-axis</b>: average of rating
+								<div class="image fit"><img src="images/Maven airlines rating.JPG" alt="" /></div>	
+								The lowest performing criteria are Gate Location, Ease of Online Booking and In-flight Wifi Service. By using we cross filtering function with group breakdown in the first section, we can see that the least satisfied group of customers coincide with the bottom three criteria. These groups score below average in these criteria. Insights and suggestions: 
+								<br/>Among Neutral/Dissatisfied customers, the lowest ranked criteria are:
+								<li><b>Gate Location</b>: While assigning gate is controlled by the airport, the airline can improve customer experience by providing clear instruction during check-in; or developing a real-time navigation app for airports.</li>
+								<li><b>Ease of Online Booking</b>: This criterion coincides with low satisfaction score of customers above 65, which are probably not tech-savvy. Further investment to make the online booking portal more user-friendly is recommended.</li>
+								<li><b>In-flight Wifi Service</b>: Young customers (24 and below) point to this criterion as the main pain point. As they are future customers with high online presence, it is crucial to prioritise addressing this matter.</li>
+								<br/><b>Delay Time Analysis</b>
+								<br/><i>Correlation between Departure Delay and Arrival Delay</i>
+								<br/>Visualisation - Scatter chart
+								<br/><b>X-axis</b>: Departure Delay; <b>Y-axis</b>: Arrival Delay. 
+								<br/>Insights: Departure Delay time and Arrival Delay time are highly positively correlated. Thus, solving issues causing Departure Delays will also reduce Arrival Delays.
+								<div class="image fit"><img src="images/Maven airlines delay.JPG" alt="" /></div>		
+								<i>Average Delay Time</i>
+								<br/>Visualisations - Card
+								<br/><b>Fields</b>: average of Departure/Arrival Delay time
+								<br/>	
+								<br/><i>Delay and Satisfaction</i>
+								<br/>Visualisation - Line chart
+								<br/><b>Y-axis</b>: average of Departure delay time
+								<br/><b>Secondary Y-axis</b>: average of Arrival delay time
+								<br/>Insights: The visualisations above demonstrate that, On average, the 15-minute mark is the turning point when customers are likely to become Neutral/Dissatisfied. 
+								<br/>	
+								<br/><i>Departure/Arrival Delay histograms</i>
+								<br/>Visualisations - Stacked Bar chart
+								<br/><b>X-axis</b>: Departure/Arrival Delay 
+								<br/><b>Y-axis</b>: vount of Departure/Arrival Delay
+								<br/>The delay times are categorised into groups, each further group to the right represents an addition minute of delay time.
+								<br/>
+								<br/><i>Flights within 15 minutes delay</i>
+								<br/>Visualisations - Card
+								<br/><b>Fields</b>: New measure:<pre><code>% departure delay < 15 = DIVIDE(
+	CALCULATE(
+		count(airline_passenger_satisfaction[ID]),
+		airline_passenger_satisfaction[Departure/Arrival Delay] <=15
+	), 
+	CALCULATE(count(airline_passenger_satisfaction[ID]))
+)</code></pre>Insight: About 77% of our flights depart/arrive within 15 minutes from the scheduled time. Better flight schedule program can help to improve this figure. We only Depart/Arrive on-time (zero delay) around 56% of all flights surveyed.	 
+									<br/><b>Departure/Arrival Time Convenience</b> is the fourth lowest score. However, Benchmarking with prior performance measures and industry standard is required to determine if we are leading or trailing competitors. If we are not too far off, we should prioritise the lowest three criteria first.
+									
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
