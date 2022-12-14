@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>25 Days of DAX Fridays! Challenge 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">December 14, 2022</span>
+									<h1>25 Days of DAX Fridays! Challenge 2021</h1>
+								</header>
+								<div class="image main"><img src="images/Dax 25 Challenge 1 main.jpg" alt="" />
+									<i><p>Photo Credit: Pikisuperstar @ <a href="https://www.freepik.com/free-vector/red-golden-advent-calendar_11108097.htm">Freepik</a></p></i></div>
+								<a href="https://curbal.com/25-days-of-dax-fridays-challenge-ed1-northwind-company">Full challenge details</a> - 25 Days of DAX Fridays! Challenge – Ed1: NorthWind Company.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/><b>About the challenge</b>
+								<br/>Welcome to the 1st edition of the 25 Days of Dax Fridays challenge by Ruth Pozuelo Martinez (Microsoft MVP) at Curbal.
+								<br/>In this challenge, 25 questions match the 25-day countdown to Christmas. The questions help to explore insights about various aspects of the underlying company. Participants must answer using DAX only. The questions draw from the NorthWind dataset with some modifications.
+								<br/>
+								<br/><b>About the dataset</b>
+								<br/>Microsoft originally developed the Northwind database as a sample database, which was then utilised as the foundation for their lessons in other database products for many years. Sales information for a firm named "Northwind Traders," which imports and exports speciality delicacies from all over the world, is available in the Northwind database. With customers, orders, inventory, purchasing, suppliers, shipping, and staff, the Northwind database makes a great instructional schema for a small-business ERP.
+								<br/>The Northwind dataset includes sample data for the following:
+									<li>Suppliers: Suppliers and vendors of Northwind</li>
+									<li>Customers: Customers who buy products from Northwind</li>
+									<li>Employees: Employee details of Northwind traders</li>
+									<li>Products & Categories: Product information</li>
+									<li>Orders: Sales Order transactions taking place between the customers & the company</li>
+								<div class="image fit"><img src="images/Dax 25 Challenge 1 model.jpg" alt="" />
+									<i>Data model</i></div>
+								<b>Day 1: How many current products cost less than $20?</b><pre><code>Day 1 = COUNTROWS(
+		FILTER(
+			Products,
+			Products[Discontinued] = false() &&
+			Products[UnitPrice] < 20
+			)
+		)</code></pre>Answer: 37
+								<br/>Rationale: The FILTER function filters the Products table where the Discontinued status is false (current products) and the Unit price is less than $20.
+								<br/>
+								<br/><b>Day 2: Which product is the most expensive?</b><pre><code>Day 2 = CALCULATE(
+		MAX(Products[ProductName]),
+		Products[UnitPrice] = MAX(Products[UnitPrice])
+		)</code></pre>Answer: Cote de Blaye
+								<br/>Rationale: CALCULATE returns the Product name of products with the highest Unit price. The first row reference in the filter context iterates through the second row reference.
+								<br/>
+								<br/><b>Day 3: What is the average unit price for our products?</b><pre><code>Day 3 = AVERAGE(Products[UnitPrice])</code></pre>Answer: $28.87
+								<br/>Rationale: The AVERAGE function returns the average value in the Unit price column.
+								<br/>
+								<br/><b>Day 4: How many products are above the average price?</b><pre><code>Day 4 = CALCULATE(
+		COUNT(Products[ProductID]),
+		Products[UnitPrice] > AVERAGE(Products[UnitPrice])
+		)</code></pre>Answer: 25
+								<br/>Rationale:  Similar to question 2, the first row reference act as an iteration over the second row reference. The COUNT expression returns the number of products that match the filter context.
+								<br/>
+								<br/><b>Day 5: How many products cost between $15 and $25? (inclusive)</b><pre><code>Day 5 = COUNTROWS(
+		FILTER(
+			Products,
+			Products[UnitPrice] >= 15 &&
+			Products[UnitPrice] <= 25
+			)
+		)</code></pre>Answer: 25
+								<br/>Rationale:  The FILTER function reduces the Products table to products with unit prices between 15 and 25.   
+								<br/>
+								<br/><b>Day 6: What is the average number of products (not quantity) per order?</b><pre><code>Day 6 = DIVIDE(
+		COUNTROWS(ALL(Orders)),
+		DISTINCTCOUNT(Orders[OrderID])
+		)</code></pre>Answer: 2.6 
+								<br/>Rationale: The ALL function ensure the numerator in the DIVIDE function is not affected by any filter context. DISTINCTCOUNT returns the number of unique order IDs. A COUNT function would not work here as one order may have multiple rows (multiple products in one order).
+								<br/>
+								<br/><b>Day 7: What is the order value in $ of open orders? (Not shipped yet)</b><pre><code>Day 7 = SUMX(
+		FILTER(
+			Orders,
+			ISBLANK(Orders[ShippedDate])
+			),
+		Orders[Quantity]*Orders[UnitPrice]
+		)</code></pre>Answer: $27,444
+								<br/>Rationale: The FILTER function narrows down the Orders table to contain not yet shipped orders (without a Shipped date). To avoid context transition, the full expression of Quantity  * Unit price is used instead of a measure. 
+								<br/>
+								<br/><b>Day 8: How many orders are “single item”? (only one product ordered)</b><pre><code>Day 8 = COUNTROWS(
+		FILTER(
+			SUMMARIZE(
+				Orders,
+				Orders[OrderID],
+				"Frequency",
+				COUNT(Orders[CustomerID])
+			),
+			[Frequency] = 1)
+		)</code></pre>Answer: 137
+								<br/>Rationale: The Frequency column in the SUMMARIZE functions COUNT the number of items in an order. The FILTER function then removes any orders with the number of items not 1.
+								<br/>
+								<br/><b>Day 9: Average sales per transaction (Order ID) for “Romero y Tomillo”?</b><pre><code>Day 9 = AVERAGEX(
+		SUMMARIZE(
+			FILTER(
+				Orders,
+				RELATED(Customers[CompanyName]) = "Romero y Tomillo"
+				),
+			Orders[OrderID], 
+			"Sales", 
+			SUMX(Orders,Orders[Quantity]*Orders[UnitPrice])
+			),
+		[Sales]
+		)</code></pre>Answer: $293.46
+								<br/>Rationale: The FILTER function returns a table of orders made by Romero y Tomillo. The SUMMARIZE function returns a two-column table, a column for the unique order IDs, and another for the total value of that order with SUMX. Finally, the AVERAGEX function goes through the summrized table and return the average of the “Sales” column.
+								<br/>
+								<br/><b>Day 10: How many days since “North/South” last purchase?</b><pre><code>Day 10 = FORMAT(
+		TODAY() - CALCULATE(
+			LASTDATE(Orders[OrderDate]),
+			Customers[CompanyName] = "North/South"),
+		"General Number"
+		)</code></pre>Answer: 387
+								<br/>Rationale: The CALCULATE function returns the date of the last order (via LASTDATE) made by North/South (in the filter context). Depending on the day this question is completed, the final answer may vary based on TODAY().  
+								<br/>
+								<br/><b>Day 11: How many customers have ordered only once?</b><pre><code>Day 11 = COUNTROWS(
+		FILTER(
+			SUMMARIZE(
+				Customers,
+				Customers[CustomerID],
+				"Count",
+				DISTINCTCOUNT(Orders[OrderID])
+			),
+		[Count]=1)
+		)</code></pre>Answer: 1
+								<br/>Rationale: SUMMARIZE returns a table with each customer IDs and the respective number of orders made. DISTINCTCOUNT must be used as one order can have more than 1 row. FILTER removes customers with 2 orders or more.
+								<br/>
+								<br/><b>Day 12: How many new customers (first purchase) in 2021?</b><pre><code>Day 12 = COUNTROWS(
+		FILTER(
+			SUMMARIZE(
+				Orders,
+				Orders[CustomerID],
+				"FirstOrder",
+				YEAR(
+					FIRSTDATE(Orders[OrderDate])
+					)=2021
+				),
+			[FirstOrder] = TRUE()
+			)
+		)</code></pre>Answer: 8
+								<br/>Rationale: The SUMMARIZE function provide a table of unique customer IDs and a true/false column check if the YEAR of the order date of the first order is 2021. FILTER removes order made in years other than 2021.
+								<br/>
+								<br/><b>Day 13: How many lost customers (no purchase) in 2021?</b><pre><code>Day 13 = COUNTROWS(
+		FILTER(
+			SUMMARIZE(
+				Orders,
+				Orders[CustomerID],
+				"LastOrder",
+				YEAR(
+					LASTDATE(Orders[OrderDate])
+					)=2020
+				),
+			[LastOrder] = TRUE()
+			)
+		)</code></pre>Answer: 2
+								<br/>Rationale: Similar to question 12, but the group by column now checks if the last order was made in 2020, ie no order in 2021.
+								<br/>
+								<br/><b>Day 14: How many customers never purchased Queso Cabrales?</b><pre><code>Day 14 = DISTINCTCOUNT(Customers[CompanyName])-
+	COUNTROWS(
+		SUMMARIZE(
+			FILTER(
+				Orders,
+				Orders[ProductID]=11
+			),
+			Orders[CustomerID],
+			Orders[ProductID]
+		)
+	)</code></pre>Answer: 59
+								<br/>Rationale: FILTER returns a list of orders that have Queso Cabrales, which is then SUMMARIZE(d) by customer IDs and order IDs. COUNTROWS then provides the number of customers who have purchased Queso Cabrales. This amount is subtracted from the number of unique customers. 
+								<br/>
+								<br/><b>Day 15: How many customers have purchased only Queso Cabrales in an order (per Order ID)?</b><pre><code>Day 15 = COUNTROWS(
+		NATURALINNERJOIN(
+			FILTER(
+				SUMMARIZE(
+					Orders,
+					Orders[CustomerID],
+					Orders[OrderID],
+					"count",
+					COUNT(Products[ProductID])
+				),
+				[count]=1
+			),
+			FILTER(
+				Orders,
+				Orders[ProductID]=11)
+			)
+		)</code></pre>Answer: 5
+								<br/>Rationale: The first FILTER function returns a table of customers who have orders with only 1 item (COUNT of Product ID in the order is 1). The second filter function returns a list of customers who have purchased Queso Cabrales (product ID = 11). The NATURALINNERJOIN function match the intersection between these two tables.
+								<br/>
+								<br/><b>Day 16: How many products are out of stock?</b><pre><code>Day 16 = COUNTROWS(
+		FILTER(
+			Products,
+			Products[UnitsInStock]=0
+			)
+		)</code></pre>Answer: 5
+								<br/>Rationale: FILTER for products that has 0 Units in stock.
+								<br/>
+								<br/><b>Day 17: How many products need to be restocked? (based on reorder level)</b><pre><code>Day 17 = CALCULATE(
+		COUNT(Products[ProductID]),
+		Products[UnitsInStock] < Products[ReorderLevel]
+		)</code></pre>Answer: 18
+								<br/>Rationale: COUNT the product IDs that have Units in stock less than the Reorder level.
+								<br/>
+								<br/><b>Day 18: How many products on order do we need to restock?</b><pre><code>Day 18 = CALCULATE(
+		COUNT(Products[ProductID]),
+		FILTER(
+			Products,
+			Products[UnitsOnOrder] > Products[UnitsInStock]
+			)
+		)</code></pre>Answer: 14
+								<br/>Rationale: COUNT the number of product IDs that satisfy the condition of Units on order is greater than Units in stock.
+								<br/>
+								<br/><b>Day 19: What is the stocked value of discontinued products?</b><pre><code>Day 19 = CALCULATE(
+		SUMX(
+			Products,
+			Products[UnitPrice]*Products[UnitsInStock]
+		),
+		FILTER(
+			Products,
+			Products[Discontinued] = TRUE()
+			)
+		)</code></pre>Answer: $4,453
+								<br/>Rationale: SUMX returns the average value of products that has been discontinued (Discontinued states is TRUE).
+								<br/>
+								<br/><b>Day 20: Which vendor has the highest stock value?</b><pre><code>Day 20 = CALCULATE(
+		MAX(Suppliers[CompanyName]),
+		TOPN(
+			1,
+			SUMMARIZE(
+				Suppliers,
+				Suppliers[CompanyName],
+				"value",
+				SUMX(
+					Products,
+					Products[UnitsInStock] * Products[UnitPrice]
+					)
+				),
+			[value],
+			DESC
+			)
+		)</code></pre>Answer: Aux joyeux ecclesiastiques
+								<br/>Rationale: The first step is to SUMMARIZE suppliers by the value of their stock products. TOPN returns the record of the supplier with the highest stock value. The MAX function grabs the name of the supplier.
+								<br/>
+								<br/><b>Day 21: How many employees (%) are female?</b><pre><code>Day 21 = DIVIDE(
+		COUNTROWS(
+			FILTER(
+				Employees,
+				Employees[Gender] = "Female"
+				)
+			),
+		COUNTROWS(
+			ALL(Employees)
+			)
+		)</code></pre>Answer: 56%
+								<br/>Rationale: Count the number of female employees and divide it by the total number of employees.
+								<br/>
+								<br/><b>Day 22: How many employees are 60 years old or over?</b><pre><code>Day 22 = COUNTROWS(
+		FILTER(
+			Employees,
+			(TODAY() -	Employees[BirthDate]
+			)/365.25 >= 60
+			)
+		)</code></pre>Answer: 6
+								<br/>Rationale: Count the number of employees with a birthday 60 years away from TODAY (365.25 days per year on average).
+								<br/>
+								<br/><b>Day 23: Which employee had the highest sales in 2021?</b><pre><code>Day 23 = CALCULATE(
+		MAX(Employees[Full Name]),
+		TOPN(
+			1,
+			SUMMARIZE(
+				Employees,
+				Employees[Full Name],
+				"Sales",
+				SUMX(
+					FILTER(
+						Orders,
+						YEAR(Orders[OrderDate]) = 2021
+					),
+					Orders[UnitPrice] * Orders[Quantity]
+					)
+				),
+			[Sales],
+			DESC
+			)
+		)</code></pre>Answer: Nancy Davoilo
+								<br/>Rationale: Similar to question 20, we first SUMMARIZE employees with their sales in the year 2021 and get the name with the highest sales via TOPN and MAX.
+								<br/>
+								<br/><b>Day 24: How many employees sold over $100k in 2021?</b><pre><code>Day 24 = COUNTROWS(
+		FILTER(
+			SUMMARIZE(
+				Employees,
+				Employees[Full Name],
+				"Sales",
+				SUMX(
+					FILTER(
+						Orders,
+						YEAR(Orders[OrderDate]) = 2021
+						),
+					Orders[UnitPrice] * Orders[Quantity]
+				)
+			),
+			[Sales] > 100000
+			)
+		)</code></pre>Answer: 4
+								<br/>Rationale: Similar to question 23 but, instead of filtering for the highest sales value, we filter for all sales amounts greater than $100,000.
+								<br/>
+								<br/><b>Day 25: How many employees got hired in 1994?</b><pre><code>Day 25 = COUNTROWS(
+		FILTER(
+			Employees,
+			YEAR(Employees[HireDate])=1994
+			)
+		)</code></pre>Answer: 3
+								<br/>Rationale: Count the number of employees with the YEAR of the Hire date is 1994.
+										
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
