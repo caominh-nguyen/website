@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Space Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">January 17, 2023</span>
+									<h1>Maven Space Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven space report.JPG" alt="" /></div>
+								<a href="https://www.mavenanalytics.io/blog/maven-space-challenge">Full challenge details</a> - Introducing the Maven Space Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>About the dataset</b>
+								<br/>4,631 records of all space missions from 1957 to August 2022, including details on the location, date, and result of the launch, the company responsible, and the name, price, and status of the rocket used for the mission.
+								<br/>
+								<br/>	
+								<b>How to play the Maven Space Challenge</b>
+								<br/>In this challenge, I presented a single-page data visualisation that captured our history with space travel.
+								<br/>
+								<br/>
+								<b>Guiding questions</b>
+								<ol>
+									<li>How have rocket launches trended across time? 
+									<li>Has the mission success rate increased?
+									<li>Which countries have had the most successful space missions? 
+									<li>Has it always been that way?
+									<li>Which rocket has been used for the most space missions? Is it still active?
+									<li>Are there any patterns you can notice with the launch locations?
+								</ol>
+								<b>Import and transform data</b>
+									<li>Import the table into PowerBI, choose Transfrom data.</li>
+									<li>Create a new column to capture the country of the launchpads via Column from example.</li>
+								<div class="image fit"><img src="images/Maven space data.JPG" alt="" /></div>	
+								<b>Visual design</b>
+								<br/>
+								<b>1. How have rocket launches trended across time?</b>
+								<br/>This question asks about a trend over time. Hence, it is best to use a line chart. I used the number of rockets launched as the Y-axis. I added some data labels to key events during the period shown. This required some readings on space exploration, the Space Race and the commercialisation of space travel. 
+								<div class="image fit"><img src="images/Maven space 1.JPG" alt="" /></div>
+								Insights:
+								<li>Space exploration began in 1957 with the launch of the Sputnik 1 satellite.
+								<li>The Space Race between the US and the USSR intensified. Two major highlights were the first human in space in 1961 (Soviet's Yuri Gagarin) and the first human on Moon in 1969 (US's Neil Armstrong).
+								<li>The Space Race ended in 1975, causing sharp drop in missions per years shortly after.
+								<li>From 1990, the dissolution of the USSR and budget cut of NASA gradually diminished the annual rocket launches.
+								<li>2010 marked the year private organisations started to heavily invest in space travel, with the launch of SpaceX's Falcon 9.
+								<br/>
+								<br/>
+								<b>2. Has the mission success rate increased?</b>
+								<br/>We cannot directly get the success rate from the dataset. A measure is needed:<pre><code>Success rate = 
+DIVIDE(
+	CALCULATE(
+		COUNT(space_missions[MissionStatus]),
+		space_missions[MissionStatus] = "Success"
+	),
+	COUNT(space_missions[MissionStatus])
+)</code></pre>The CALCULATE in the nominator returns the number of successful missions, while the denominator counts all the missions. When we put this into the graph, the year filter context from the graph provides the annual success rate.  
+								<div class="image fit"><img src="images/Maven space 2.JPG" alt="" /></div>	
+								Insights:
+								<li>The USSR made 2 successful launches in 1957 (Sputnik 1 and Sputnik 2). The US failed 1 mission in the same year.
+								<li>The following year, 1958, in an effort to catch up in the Space Race, the US attempted 23 launches but only 5 were successful.
+								<li>NASA was found in 1958 to coordinate the US space programs.
+								<li>The global success rate reached 80% in 1962 and has not fallen below that since 1964. 
+								<br/>
+								<br/>
+								<b>3. Which countries have had the most successful space missions?</b>
+								<br/>The dataset only provides a list of companies but not the country of those companies. From reading about space exploration, we know space travel is expensive. Therefore, there are few countries actively engaged in this area. We can indirectly answer this question by looking at the top companies and referencing their countries. 
+								<div class="image fit"><img src="images/Maven space 3.2.JPG" alt="" /></div>	
+								However, we get a partial picture if we only look at the success rate. Some companies have a 100% success rate, but they only launched a small number of rockets. We also need to look at the total number of rockets launched to get a more general sense.
+								<div class="image fit"><img src="images/Maven space 3.1.JPG" alt="" /></div>	
+								Bar charts are recommended when comparing values (rockets) between different categories (companies).
+								<br/>Insights:
+								<li>RVSN USSR stood out as the company with the most rockets launched (1,777), way above the next two contenders (CASC of China and Arianespce of France).
+								<li>The US has always been a major player in space travel with 5 companies in the top 10. 
+								<li>All top 10 companies have at least 80% success rate, with ULA achieves an outstanding 99% success rate. 
+								<br/>
+								<br/>
+								<b>4. Has it always been that way?</b>
+								<br/>This follow-up question to question 3 requires us to plot the success rate on a line chart. However, if we plot all companies on the same chart, it becomes unreadable. Instead, I plot several charts with companies with similar features (government enterprises, US private organisations and US defence-linked companies) for comparison. 
+								<div class="image fit"><img src="images/Maven space 4.JPG" alt="" /></div>	
+								Insights:
+								<li>RVSN USSR appeared to achieve high success rate slower and was unable maintain over sustained periods, in comparison with NASA.
+								<li>Arianespace (France) and CASC (China) both had rough start but seemed to stable after the year 2000.
+								<li>Blue Origin and Virgin Galactic have exceptional success rate, but only launched their first rocket in the last decade. More time is needed to evaluate their long-term performance. US's Defence-linked companies are also experiencing fluctuated success rates. 
+								<br/>
+								<br/>
+								<b>5. Which rocket has been used for the most space missions? Is it still active?</b>
+								<br/>A bar chart can answer the first question, which shows USA/USSR rockets. 
+								<div class="image fit"><img src="images/Maven space 5.1.JPG" alt="" /></div>	
+								For the second question, the answer is simply ‘No’ for all rockets in the top 5, but it does not provide much insight. I included a second chart to show the current top active rockets. These two charts combined indicate a change in the sources of rockets. 
+								<div class="image fit"><img src="images/Maven space 5.2.JPG" alt="" /></div>	
+								To get the number of active rockets, we need another measure:<pre><code>Active count = 
+CALCULATE(
+	COUNT(space_missions[RocketStatus]),
+	space_missions[RocketStatus] = "Active"
+)</code></pre>Insights:
+								<li>Throughout the history of space exploration, the US and the USSR/Russia launched the most rockets.
+								<li>However, most of these rockets have been retired and new players emerged.
+								<li>China is replacing Russia as a prominent player, with the Long March rockets.
+								<li>In the US, private organisations like Space X are taking the stage with promising cheaper and reusable rockets like the Falcon 9.
+								<br/>
+								<br/>
+								<b>6. Are there any patterns you can notice with the launch locations?</b>
+								<br/>Usually, the country that develops the rocket will launch using local infrastructure. Shipping rocket components would incur costs. Hence, the answer to this question will reinforce the insight from question 5. Not surprisingly, the change in launchpads' location coincides with the decline from Russia and the emergence of China.
+								<div class="image fit"><img src="images/Maven space 6.JPG" alt="" /></div>	
+								Insights:
+								<li>The downfall of the USSR in 1991 was a clear turning point. The USA led in the number of rockets launched after this event. In contrast, the use of launchpads in Russia and Kazakhstan (both formerly Soviet) never recovers to its prime during the 70s and 80s.
+								<li>China has made great progress in space exploration recently, currently standing at number 2 in the world on launchpad usage.
+								<li>France has gradual development, without any great leap.
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
