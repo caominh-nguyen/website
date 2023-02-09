@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Churn Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">February 09, 2023</span>
+									<h1>Maven Churn Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven churn report.JPG" alt="" /></div>
+								<a href="https://www.mavenanalytics.io/blog/maven-churn-challenge">Full challenge details</a> - Introducing the Maven Churn Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>1. Problem</b>	
+								<br/>
+								A telecommunication company based in California wants to understand who their high-value customers are, and reasons by their customers’ movements. Understanding drivers behind customer’s movement will assist with the overall customer retention. While identifying high-value customers will aid in resource allocation in customer support. Overall, the project should result in maintaining regular customers, stabilising revenue.
+								<br/>
+								<br/>
+								<b>2. Data</b>	
+								<br/>
+								This dataset contains 2 tables, in CSV format:
+								<br/>
+								The <b>Customer Churn</b> table contains information on all 7,043 customers from a Telecommunications company in California in Q2 2022
+								<br/>
+								>> Each record represents one customer, and contains details about their demographics, location, tenure, subscription services, status for the quarter (joined, stayed, or churned), and more.
+								<br/>
+								<br/>
+								The <b>Zip Code Population</b> table contains complimentary information on the estimated populations for the California zip codes in the Customer Churn table.
+								<br/>
+								<br/>
+								The data is clean and 100% usable, hence no cleaning is required.
+								<br/>
+								<br/>
+								<b>3. Analysis</b>	
+								<br/>								
+								Firstly, we need to understand the current situation regarding customers’ movements. This requires calculating the number of customers from the prior period, the new customer who joined and/or left, and the current customers.
+								<br/>
+								>> <b>Current customers</b> are those who have “Stayed” or “Joined” as their customer status.
+								<br/>
+								>> <b>Customers that left</b> in the last quarter as those labelled as “Churned”.
+								<br/>
+								>> <b>New customers</b> have a tenure of less than 4 months. They may be labelled as “Joined” or “Churned”. Some customers could join and leave within the same quarter.
+								<br/>
+								>> <b>Customers from the prior period</b> would be Current customers + Churned customers - New customers.
+								<br/>
+								<br/>
+								Once we have the information above, we can calculate the Churn rate to see how we perform. In addition, we can also calculate the financial impact of losing customers by comparing their monthly charges and the total monthly charge.
+								<br/>
+								<br/>
+								Secondly, we shall explore the characteristics of Churned customers to find the common patterns between them. This involves plotting bar charts counting customer IDs distributed across categories within demographic features (location, age, type of services used, the given reason for leaving and so on). Categories that stand out from the rest should be reported.
+								<br/>
+								<br/>
+								Finally, to determine high-value customers, we need to categorise them into groups and compare them to find out which groups generate the most revenue for us. I decided to categorise them based on the monthly charge, then evaluate the number of customers in each group and their associated revenue. One last step is locating high-value customers in terms of physical location to better allocate resources in those areas.
+								<br/>
+								<br/>
+								<b>4. Results and Recommendations</b>
+								<br/>
+								<b>Current situation:</b>
+								<div class="image fit"><img src="images/Maven churn current situation.JPG" alt="" /></div>	
+								We had 1051 new customers in the last quarter, but we also lost 1869 customers, a churned rate of 27% overall. Of those who signed up recently, 57% left in the same reporting period. 
+								<br/>
+								This led to a reduction of $137k (or 31%) of monthly revenue.  
+								<br/>
+								Immediate actions are needed to rectify the current situation or the company will be out of business within a year.
+								<br/>
+								<br/>
+								<b>Characteristics of churned customers:</b>
+								<div class="image fit"><img src="images/Maven churn category.JPG" alt="" /></div>	
+								Churned customers cited “Competitor” as the number one reason (45/100 cases).
+								<br/>
+								>> We need to investigate the offers of our competitors to identify their selling points that outperform us.
+								<br/>
+								<br/>	
+								Dissatisfaction with product/ service/ network accounted for 68% of this category.
+								<br/>
+								>> Benchmark our product/ service/ network with competitors and industry standard to identify weakness and improve. 
+								<br/>
+								<br/>	
+								70% of customers who left because of our Attitude pointed to the attitude of support personnel as the pain point.
+								<br/>
+								>> Invest in attitude training for staff to address this issue. 	
+								<br/>
+								<div class="image fit"><img src="images/Maven churn offer.JPG" alt="" /></div>	
+								Customers without an offer were very likely to churn.
+								<br/>
+								>> Move current non-offer customers to an offer to avoid churning. 
+								<br/>
+								>> Offer E also performed poorly in keeping customers.
+								<br/>
+								>> Move customers of offer E to other offer or modify offer E to be more attractive.
+								<br/>
+								<div class="image fit"><img src="images/Maven churn city.JPG" alt="" /></div>	
+								We tended to loose customer in big cities like Los Angeles and San Diego, and loosing them to competitors.
+								<br/>
+								>> Research offers made by competitors and try to match them.
+								<br/>
+								>> Run ads campaigns to win back customers.
+								<br/>
+								>> Assess operation in low-churning cities and apply it high-churning locations.
+								<br/>
+								<div class="image fit"><img src="images/Maven churn contract.JPG" alt="" /></div>	
+								Customers on a monthly contract were more than 10 times likely to churn
+								<br/>
+								>> Encourage new customers to sign up for long-term contracts, offering discounts and/or loyalty perks.
+								<br/>
+								>> Impose a high exist fee on one and two year contracts to discourage customers from leaving.
+								<br/>
+								<div class="image fit"><img src="images/Maven churn service.JPG" alt="" /></div>	
+								Customers who do not sign up to Additional internet services are 20-30% more likely to churn.
+								<br/>
+								>> Upselling additional service during the initial sign up. We can bundle these services together as monthly subscription package.
+								<br/>
+								>> Offer discount to incentivise current customers to sign up to additional internet services.
+								<br/>
+								<br/>
+								<b>High-value customers:</b>
+								<div class="image fit"><img src="images/Maven churn revenue.JPG" alt="" /></div>	
+								Our high-value customers are those spending between $70-$110/per month. They account for 47% of our customers but generate 66% of our monthly revenue. We also experience a higher than-average churn rate among them.
+								<br/>
+								<div class="image fit"><img src="images/Maven churn map.JPG" alt="" /></div>	
+								They are mostly located in big metropolitan areas like Los Angeles, San Diego, San Francisco, San Jose and Sacramento. Customers in these locations likely have a deeper pocket, which explains the fierce competition to attract them.
+								<br/>
+								>> Position our customer support teams in these locations to provide more timely services.
+								<br/>
+								>> Focus our market research activities in these areas to better understand and meet customers' tastes and competitors’ offerings, then match them with quality. 
+								<br/>
+								>> Customers did not cite Price as a major factor for leaving. Therefore, quality seems to play a key role here.
+								<br/>
+								<br/>								
+								<b>5. Technical Details</b>	
+								<br/>
+								This project used entirely Power BI to analyse and visualise the results.
+								<br/>
+								<br/>
+								<b>6. Limitation</b>
+								<br/>
+								The data is limited to the second quarter of 2022. Therefore, we cannot determine if there are any seasonal factors in play. Further analyses using data over a longer period of time (about 5 years) is necessary. 
+								
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
