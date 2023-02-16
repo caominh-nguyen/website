@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Slopes Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">February 17, 2023</span>
+									<h1>Maven Slopes Challenge</h1>
+								</header>
+								<iframe width="1170" height="900" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=DED35BC78985758F%212301&authkey=%21AGjK2t73Cve5F04&em=2&ActiveCell='Report'!A1&Item='Report'!A1%3AQ479&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>								
+								<br/>
+								<a href="https://www.mavenanalytics.io/blog/maven-slopes-challenge">Full challenge details</a> - Introducing the Maven Slopes Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output. Download a copy at the bottom right corner above.
+								<br/>
+								<b>1. Project Title and Description</b>
+								<br/>
+								A tool to help skiers find their ideal destination. It will look at the inputs of the user and recommend resort(s) that match the requirements.
+								<br/>	
+								<br/>
+								<b>2. Problem</b>
+								<br/>	
+								There are many ski resorts around the world with different features and seasons. Casual and new skiers may find it hard to pick a destination that suits their needs. Hence, I build an interactive tool to address this problem.
+								<br/>
+								<br/>
+								<b>3. Data</b>
+								<br/>
+								This dataset contains 2 tables in CSV format:
+								<br/>
+								The <b>Resorts table</b> contains information on 499 ski resorts around the world, including their location, slopes, lifts, prices, and ski season.
+								<br/>
+								The <b>Snow table</b> contains supplemental data on the surface of the earth covered by snow for each month in 2022, by latitude & longitude.
+								<br/>
+								<br/>
+								<b>Data cleaning:</b>
+								<br/>
+								1. There are random question marks in the resorts’ names => remove and replace with nothing.
+								<br/>
+								BEFORE
+								<div class="image fit"><img src="images/Maven slopes names dirty.JPG" alt="" /></div>	
+								AFTER
+								<div class="image fit"><img src="images/Maven slopes names clean.JPG" alt="" /></div>	
+								2. The season of each resort varies => to make comparison easier, the season periods are replaced with actual months. The month column is then split into individual month columns and unpivoted so that the months become values for filtering. Some resorts have an unknown season. To give them the benefit of the doubt, all twelve months are allocated to them. The final ranking relies on snow coverage data hence the months with high coverage should be within the resorts’ season.
+								<br/>
+								REPLACE CHARACTERS WITH NUMBERS
+								<div class="image fit"><img src="images/Maven slopes season.JPG" alt="" /></div>	
+								SPLIT COLUMN BY DELIMITER
+								<div class="image fit"><img src="images/Maven slopes delimit.JPG" alt="" /></div>
+								UNPIVOT COLUMNS	
+								<div class="image fit"><img src="images/Maven slopes unpivot.JPG" alt="" /></div>
+								3. The pass price of each resort is grouped into buckets for ease of comparison.
+								<br/>
+								GROUP PRICES INTO RANGES
+								<div class="image fit"><img src="images/Maven slopes price.JPG" alt="" /></div>	
+								4. If any resort has 0 km in Beginner/ Intermediate/ Difficult slopes, it is assumed that the resort does not feature those slopes.
+								<br/>
+								ADD YES/NO COLUMNS
+								<div class="image fit"><img src="images/Maven slopes difficulty.JPG" alt="" /></div>	
+								5. The regions in the Snow table have an area of 0.25x0.25 degrees of latitude and longitude => the latitudes and longitudes are combined to form unique coordinates. In the Resort table, latitudes and longitudes are rounded to the nearest region and combined. Finally, the snow data is brought to the Resorts table using the Merge query function.
+								<br/>
+								ROUNDING LATITUDE AND LONGITUDE
+								<div class="image fit"><img src="images/Maven slopes rounding.JPG" alt="" /></div>
+								ROUNDED LATITUDE AND LONGITUDE	
+								<div class="image fit"><img src="images/Maven slopes rounding columns.JPG" alt="" /></div>
+								COMBINE INTO AREA COORDINATE	
+								<div class="image fit"><img src="images/Maven slopes area.JPG" alt="" /></div>
+								MERGING RESORTS AND SNOW TABLES USING LEFT OUTER JOIN
+								<div class="image fit"><img src="images/Maven slopes merge.JPG" alt="" /></div>
+								<b>4. Result</b>
+								<br/>
+								A pivot table that shows the list of resorts, the snow coverage, the number of snow cannons and the total lift capacity per hour. Snow coverage is used to rank the resorts, from highest coverage to lowest coverage. Snow cannons act as a backup plan in case of low snowfall. The higher the lift capacity, the faster speed of moving to the starting points, and the more skiing time.
+								<br/>
+								<br/>
+								The columns Month, Continent, Country, Price, Beginner slopes, Intermediate slopes, Difficult slopes, Summer skiing, Night skiing, Snowpark, and Child friendly are used as slicers for users to narrow down the resort list.
+								<br/>
+								<br/>
+								<b>5. Technical Details</b>
+								<br/>
+								The project used entirely Excel to encourage beginners in data analysis to participate in the challenge. The data cleaning process was done in the Power Query editor of Excel. It is possible to clean the data using entirely Excel formulas instead of Power Query but the process would be more tedious.
+								<br/>
+								<br/>
+								<b>6. Challenges</b>
+								<br/>
+								In the beginning, I made the mistake of creating several filter tables for the months, area, and snow coverage. It was not possible because the data model became too complex and the relationships did not filter through correctly. I realised that it was much easier to bring all the data I needed into the Resorts tables.
+								<br/>
+								<br/>
+								The area coordinates follow a specific format with an increment of 0.25 starting from -0.875. It took some time to write the correct M code to round the coordinates in the Resorts table to the nearest region.
+								<br/>
+								<br/>
+								The season column in the Resorts table took a while to be transformed into months. I could not write an M code to automatically transform the values. Hence, I used the manual approach to match the seasons with the associated months with the ‘Column from example’ function.
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
