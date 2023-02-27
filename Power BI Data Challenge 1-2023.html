@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Power BI Data Challenge 1-2023</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">February 26, 2023</span>
+									<h1>Power BI Data Challenge 1-2023</h1>
+								</header>
+								<div class="image main"><img src="images/Power BI Data Challenge 1-2023 report.jpg" alt="" /></div>
+								<a href="https://www.linkedin.com/pulse/power-bi-data-challenge-12023-arno-wakfer-/">Full challenge details</a> - Introducing the Power BI Data Challenge 1-2023.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>1. Project Title and Description</b>
+								<br/>
+								Explore and analyse HR data to answer questions from Top Management. The final outputs include visualisations and insights into these questions.
+								<br/>	
+								<br/>
+								<b>2. Problem</b>
+								<br/>	
+								There are five questions:
+								<br/>1.	What is the correlation between an employee's performance rating and their salary, age, or job level?
+								<br/>2. Is there a difference in employee satisfaction levels between different departments in the company?
+								<br/>3. How does an employee's job level relate to their likelihood to leave the company?
+								<br/>4. How does the length of time an employee has been with the company impact their salary and performance rating?
+								<br/>5. What is the most common reason for employee attrition, and is there a pattern to when employees leave the company (e.g. by age, tenure, or performance rating)?
+								<br/>
+								<br/>
+								<b>3. Data</b>
+								<br/>
+								This dataset contains a table in CSV format with 311 records, one for each employee and their attributes (Name, Gender, Salary, DOB, Job title, Date hired, Date terminated, Location, Manager, Performance Score, Employee satisfaction,...)
+								<br/>
+								<br/>
+								<b>Data cleaning:</b>
+								<li>Change to Local date format (originally in U.S) for DOB, date of hire, date of termination, last performance review date.</li>
+								<li>Change the data type of number columns appropriately. Most of them were initially identified as text.</li>
+								<li>Clean the Dept ID column to match the Department column: Admin-1; Executive-2; IT/IS-3; Software Engineering-4; Production-5; Sales-6.</li>
+								<li>Trim the Position column to remove leading and trailing blanks.</li>
+								<br/>
+								<b>4. Result</b>
+								<br/><b>1.	What is the correlation between an employee's performance rating and their salary, age, or job level?</b>
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 performance.JPG" alt="" /></div>	
+								<li>Use scatter plots to show the correlation between variables. </li>
+								<li>Extract the data to Excel tables and calculate correlation (CORREL) to verify the strength of the relationships.</li>
+								To obtain the Job level, each Job title is assigned a level based on the number of reporting chains below them. Staff without a direct report is at Job level 1. Examples:
+								<li>CEO (4) => CIO (3) => Software Engineering Manager (2) => Software Engineer (1)</li>
+								<li>CEO (4) => Shared Services Manager (2) => Accountant (1)</li>
+								>>> Overall, there is no clear correlation between an employee's performance rating and their salary, age, and job level. 
+								<br/>
+								<br/><b>2. Is there a difference in employee satisfaction levels between different departments in the company?</b>
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 satisfaction.JPG" alt="" /></div>	
+								<li>Use a horizontal bar chart for visualisation. Perform an ANOVA test (Analysis of Variance) to verify if there is significant difference between the Departments.</li>
+								>>> There is no significant difference between departments regarding employee satisfaction (3-4 on average). 
+								<br/>	
+								>>> When taking into account the Department, correlations between performance rating and salary, age, and job level do not improve either.
+								<br/>
+								<br/><b>3. How does an employee's job level relate to their likelihood to leave the company?</b>
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 retention.JPG" alt="" /></div>	
+								<li>Use a vertical bar chart for visualisation. For the y-axis, create a measure for the retention rate (number of employees who left over the number of all employees).</li>
+								>>> Employees at job levels 1 and 2 are much more likely to leave the company. The Production department is the worst performer (lowest retention rate)
+								<br/>
+ 								>>> Senior management at levels 3 and 4 have not left the company since recruited. This also means level 1 and 2 employees cannot progress.
+								<br/>
+								<br/><b>4. How does the length of time an employee has been with the company impact their salary and performance rating?</b>
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 tenure.JPG" alt="" /></div>	
+								<li>Once again, scatter plots are used for illustration. In this case, it is not necessary to calculate correlation because the trend lines are flat in both graphs.</li>
+								<li>Tenure is calculated as a column for the period between Date of Hire and Date of Termination. If the employee is still employed, the Tenure if from Date of Hire to now.</li>
+								>>> The links between Tenure and Salary and Performance rating are very weak. 
+								<br/>
+								>>> Low level employees probably do not see job progress and personal development, hence they leave. 
+								<br/>
+								<br/><b>5. What is the most common reason for employee attrition, and is there a pattern to when employees leave the company (e.g. by age, tenure, or performance rating)?</b>
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 reasons.JPG" alt="" /></div>
+								<li>The TermReason column is cleaned and properly formatted. Some reasons are grouped together like more money and unhappy as they link to job satisfaction.</li>
+								>>> Employees who left mostly cited Job satisfaction and Another position (potentially better). This ties back to the tenure graphs above. Employees at low level will leave for better positions.
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 age when leave.JPG" alt="" /></div>	
+								<li>Age is the difference between now and DOB, visualied on a line chart, filtering for employees who have left.</li>
+								>>> Staff tend to leave more often between 26-35, in their early career, most of them are level 1. This further demonstrates that young employees seek career progress.
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 tenure when leave.JPG" alt="" /></div>	
+								<li>Tenure is plotted on a bart chart against the number of employees who have left.</li>
+								>>> Employees tend to leave at 2-5 years into their tenure. This highlights staff who do not see future career prospects, after some time, will pursue opportunities elsewhere. 
+								<div class="image fit"><img src="images/Power BI Data Challenge 1-2023 performance when leave.JPG " alt="" /></div>	
+								<li>Use a vertical bar chart for visualisation.</li>
+								>>> The majority of employees who left actually met their performance expectation, emphasizing that it is not about the employees but the job itself.
+								<br/>
+								<br/>
+								<b>5. Technical Details</b>	
+								<br/>
+								This project used entirely Power BI to analyse and visualise the results. 
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
