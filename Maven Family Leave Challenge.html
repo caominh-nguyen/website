@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Family Leave Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">April 5, 2023</span>
+									<h1>Maven Family Leave Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven family leave challenge dashboard.JPG" alt="" /></div>
+								<a href="https://www.mavenanalytics.io/blog/maven-airlines-challenge">Full challenge details</a> - Introducing the Maven Family Leave Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>1. Project Title</b>	
+								<br/>
+								Family Leave policy review of more than 1600 organisations.  
+								<br/>
+								<br/>
+								<b>2. Problem</b>
+								<br/>
+								I am working as a Data Visualization Specialist at an online business journal for this challenge. I create charts, visuals, and infographics as supporting content for articles.
+								<br/>
+								<br/>
+								<b>3. Data</b>	
+								<br/>
+								This dataset contains 1 table in CSV format: Crowdsourced parental leave data from 1,601 companies across different industries, including paid/unpaid maternity and paternity leave weeks.
+								<br/>
+								<br/>
+								Data cleaning and transformation:
+								<li>All N/A data (Not available) is assumed to be 0.</li>
+								<li>The Industry column is split into Industry and Sub-Industry using split column by delimiter function “: “.</li>
+								<li>Replace N/A with Other in the new Industry column. </li>
+								<li>Add columns: Total Paid Leave, Total Unpaid Leave, Total Leave.
+								<li>Unpivot all Leave columns.</li>
+								<br/>
+								<b>4. Result</b>
+								<br/>
+								Forethought:
+								<br/>
+								The challenge asks for a set of visualisations. Hence, I focus on creating complete visualisations without further filtering and interaction needed.	
+								<br/>
+								<br/>
+								The first chart looks at comparing Paid/Unpaid Maternity/Paternity leaves. On an average level, female staff have about three months of paid leave and another month of unpaid leave. However, male staff essentially receive no leave at all. I use Median numbers because, looking at the next two charts on the distribution of leave periods, the data is highly positively skewed.
+								<div class="image fit"><img src="images/Maven family leave challenge 1.JPG" alt="" /></div>	
+								After an overview of the big picture, the next two charts identify the best and worst companies based on the period of leave provided. Grant Thorton stands out with 51 paid weeks for both parents. LAC Group and Flatiron Health each gives 32 and 30 paid weeks, respectively, for both maternity and paternity leaves. Several companies provide a generous 52-week paid leave but for female staff only.
+								<div class="image fit"><img src="images/Maven family leave challenge 2.JPG" alt="" /></div>	
+								<div class="image fit"><img src="images/Maven family leave challenge 3.JPG" alt="" /></div>	
+								The final three charts compare data across industries to demonstrate how different industries stack up across different leave categories. The Philanthropy industry has decent period in both paid and unpaid leaves, whereas Legal is the worst performer in family inclusivity practice with on 7-week leave on average.
+								<div class="image fit"><img src="images/Maven family leave challenge 4.JPG" alt="" /></div>	
+								<b>5. Technical Details</b>
+								<br/>	
+								The visualisations were created in Power BI. The data was cleaned and transformed in the Power Query Editor.
+								<br/>
+								<br/>
+								<b>6. Challenges</b> 
+								<br/>	
+								At first, I did have some challenges creating the bar charts because the legends and categories did not behave like my initial thought. After some digging, I discovered that unpivoting all the leave columns helped. This put the Leave categories into one column, making it easier to modify the charts.
+	
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
