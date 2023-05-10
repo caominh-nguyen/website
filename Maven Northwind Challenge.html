@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Maven Northwind Challenge</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">May 9, 2023</span>
+									<h1>Maven Northwind Challenge</h1>
+								</header>
+								<div class="image main"><img src="images/Maven Northwind dashboard.JPG" alt="" /></div>
+								<a href="https://www.mavenanalytics.io/challenges/maven-northwind-challenge/24">Full challenge details</a> - Introducing the Maven Northwind Challenge.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>
+								<br/>
+								<b>1. Project Title</b>	
+								<br/>
+								Executive Dashboard of Northwind Traders.  
+								<br/>
+								<br/>
+								<b>2. Problem</b>
+								<br/>
+								Northwind Traders is a global import and export company that specializes in supplying high-quality gourmet food products to restaurants, cafes, and specialty food retailers around the world.
+								<br/>
+								<br/>
+								The task is building a top-level KPI dashboard for the executive team. Its purpose should be to allow them to quickly understand the company's performance in key areas, including: Sales trends, Product performance, Key customers and Shipping costs.
+								<br/>
+								<br/>
+								<b>3. Data</b>	
+								<br/>
+								Sales & order data for Northwind Traders, a fictitious gourmet food supplier, including information on customers, products, orders, shippers, and employees.
+								<br/>
+								<br/>
+								Importing data
+								<li>Reviewed the data dictionary to identify potential primary and foreign keys.</li>
+								<li>Imported each table into PowerBI </li>
+								<li>Double-checked that the data picked up by Power BI matched the description in the data dictionary.</li>
+								<li>Imported a date table.</li>
+								<li>Reviewed the relationships picked up by Power BI.</li>
+								<br/>
+								<b>4. Brainstorming with ChatGPT</b>
+								<br/>
+								I asked ChatGPS to suggest KPIs based on the data dictionary.
+								<div class="image fit"><img src="images/Maven Northwind GPT 1.JPG" alt="" /></div>	
+								The results were promising, but there were weird answers like Customer satisfaction (the dataset did not provide this) and the Number of Discontinued products (probably not appropriate for an Executive-level dashboard). I must give credit to ChatGPT for pointing out Customer Satisfaction could be obtained another source. 
+								<div class="image fit"><img src="images/Maven Northwind GPT 2.JPG" alt="" /></div>	
+								I then asked it to write the DAX codes,
+								<div class="image fit"><img src="images/Maven Northwind GPT 3.JPG" alt="" /></div>									
+								Once again, the answers were decent. It suggested proper formulas that only needed some tweaking to function. However, when prompting for more KPIs and DAX code, the results got more complicated and strange.
+								<div class="image fit"><img src="images/Maven Northwind GPT 4.JPG" alt="" /></div>
+								<div class="image fit"><img src="images/Maven Northwind GPT 5.JPG" alt="" /></div>	
+								<div class="image fit"><img src="images/Maven Northwind GPT 6.JPG" alt="" /></div>
+								<div class="image fit"><img src="images/Maven Northwind GPT 7.JPG" alt="" /></div>					
+								Overall, I would give ChatGPT a 6/10 for this task. It was a great starting point, providing practical high-level dimensions to group KPIs and suggesting decent KPIs (like Fulfillment rate, Sales growth rate) with semi-functioning DAX codes. However, I still need to do much tweaking in some complex cases.
+								<br/>
+								<br/>
+								<b>5. Choosing the KPI groups</b>
+								<br/>
+								<br/>
+								The challenge suggested using Sales trends, Product performance, Key customers, and Shipping costs. It was crucial to remember that the challenge was creating an executive dashboard. Therefore, showing high-level figures was more appropriate than detailed figures. Each KPI group could have its own report for further drill down.
+								<br/>
+								<br/>
+								After some thinking, I decided to modify Sales trends into Sales performance (for high-level figures) and Sales breakdown (for charts to visualise sales data).
+								<br/>
+								<br/>
+								I added Employee performance because people was important dimension, especially sales staff who were the revenue generators.
+								<br/>
+								<br/>
+								I kept the Customer dimension but added more KPIs based on ChatGPT suggestions.
+								<br/>
+								<br/>
+								Shipping cost alone was a small topic to explore. Hence I grouped it under Operation Efficiency, adding other shipping measurements.
+								<br/>
+								<br/>
+								I changed Product performance to Product management to include the product mix.
+								<br/>
+								<br/>
+								When designing each dimension, I kept in mind that people read in a Z pattern. Therefore, I position the visualisations in a similar orientation. To quickly identify each dimension, I inserted an icon that represented it. Also, I wanted to tell a story with the data, so I utilised headings and labels to add a personal touch. 
+								<br/>
+								<br/>
+								<b>6. Results</b>
+								<div class="image fit"><img src="images/Maven Northwind sales.JPG" alt="" /></div>	
+								+ <b>Gross Sales</b>: using SUMX over the order_details table, multiplying unit price and quantity.
+								<br/>								
+								+ <b>Net Sales</b>: similar to Gross Sales but adding *(1 - discount).
+								<br/>
+								+ <b>Discount rate</b>: 1 - (Net Sales/Gross Sales)
+								<br/>
+								+ <b>Number of orders</b>: using DISTINCTCOUNT over order[orderID]. 
+								<br/>
+								+ <b>Average Order value</b>: DIVIDE Net Sales over Number of orders.
+								<br/>
+								+ <b>YTD Sales growth</b>: this one was tricky. The first step was calculating YTD Sales using TOTALYTD. The next step was calculating YTD Sales of the same period last year, by applying SAMEPERIODLASTYEAR as a filter context in a CALCULATE. Finally, DIVIDE the former measure over the latter one.
+								<div class="image fit"><img src="images/Maven Northwind sales breakdown.JPG" alt="" /></div>	
+								I was slicing the Net Sales using charts to identify trends (Monthly Sales) and significant factors (Product Categories and Market segments). You could use other filter contexts. 
+								<div class="image fit"><img src="images/Maven Northwind employees.JPG" alt="" /></div>	
+								+ For <b>Average Sales</b> and <b>Average Orders</b>, DIVIDE the Net Sales (Number of orders) by the Number of employees (use DISTINCTCOUNT).
+								<br/>
+								+ I compared individual performance using custom colouring on a bar chart. High performers were in green, while poor performers were scaling to red.
+								<div class="image fit"><img src="images/Maven Northwind customers.JPG" alt="" /></div>	
+								+ The challenge asked for the top customers, shown using a column chart and filtering for the top 5 by Net Sales.
+								<br/>
+								+ <b>Average orders per customer</b>: DIVIDE the Number of orders over the Number of customers.
+								<br/>
+								+ <b>New customers</b>: this one was another tricky one. The first step was identifying the first year a customer placed an order. I achieve this by using SUMMARIZE, YEAR and CALCULATE. CALCULATE was vital because it created a context transition, where the customerID in the Customer table became the filter context. In the next step, FILTER the summarised table and kept only "first year" = the current year (2015 in the data) was kept. Finally, COUNTROWS identified the Number of new customers.
+								<br/>
+								+ <b>Customers at-risk</b>: similar to the measure above, customers at-risk were those who had not had an order in the current year. Their "last year" was less than the current year.
+								<div class="image fit"><img src="images/Maven Northwind operation.JPG" alt="" /></div>	
+								+ <b>Order fulfilment rate</b>: FILTER the Order table where ShippedDate <= RequiredDate AND ShippedDate <> 0 (not yet shipped).
+								<br/>
+								+ <b>Processing time</b>: the AVERAGEX of ShippedDate - OrderDate; remember to FILTER out ShippedDate = 0.
+								<br/>
+								+ <b>Average freight</b>: showed the average of the freight column using a card visualisation.
+								<br/>
+								+ <b>Freight / Gross Sales</b>: DIVIDE SUM of freight over Gross Sales Revenue.
+								<div class="image fit"><img src="images/Maven Northwind product.JPG" alt="" /></div>	
+								+ <b>Product Mix</b>: a column chart demonstrating the Number of ProductIDs in each Category.
+								<br/>
+								+ <b>Bestsellers and Flops</b>: added two extra columns to the Products table using RANKX, ALL and CALCULATE (COUNT). CALCULATE(COUNT) provided the frequency of ProductIDs from the Orders table. RANKX and ALL then ranked the frequency. Sorting the column with DESC positioned the Bestsellers at the top, while sorting with ASC showed the Flops at the top. Showing the top 5 names using tables accordingly.
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
