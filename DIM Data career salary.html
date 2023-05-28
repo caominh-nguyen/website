@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Data In Motion: Data Science Job Salaries</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PF9N69TZQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PF9N69TZQV');
+</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Portfolio</a></li>
+							<li><a href="opinions.html">Opinions</a></li>
+							<li><a href="mentoring.html">Mentoring</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/caominh-nguyen" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">May 27, 2023</span>
+									<h1>Data In Motion: Data Science Job Salaries</h1>
+								</header>
+								<iframe src="https://onedrive.live.com/embed?cid=DED35BC78985758F&resid=DED35BC78985758F%212371&authkey=AEYlhnHVFR1pwts&em=2" width="1200" height="1100" frameborder="0" scrolling="no"></iframe>								
+								<br/><a href="https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries">Dataset on Kaggle</a> - See challenge questions below.
+								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
+								<br/>Click the bottom right corner of the window above to view in full-screen mode.
+								<br/>
+								<br/>
+								<b>1. About the dataset</b>
+								<br/>The dataset contains a table of records for data science positions and related information, such as salary, location, year recorded, experience level. A copy of the data dictionary is below.
+								<span class="image fit"><img src="images/DIM Data career salary dictionary.JPG" alt="" /></span>
+								<b>2. Challenge questions</b>
+								<br/> There are nine questions in total, querying different aspects of the dataset.
+								<ol>	
+									<li>Which role has the highest salary employment wise?</li>
+									<li>Which employment types do employers prefer to hire?</li>
+									<li>Which role are entry leveled generally hired for?</li>
+									<li>Which countries pay the highest for which roles?</li>
+									<li>What insights can you find regarding employee demographics?</li>
+									<li>Which experience level has the highest hiring?</li>
+									<li>Does company size affect the rate of hiring and pay scale?</li>
+									<li>What is the year over year (YoY) salary growth at different levels?</li>
+									<li>Create a dashboard to summarize your insights.</li>
+								</ol>
+								<b>3. Data cleaning and transformation</b>
+								<ol>
+									<li>After importing the dataset to the Power Query Editor, double-checked the data type, distribution, and values matching the data dictionary.</li>
+									<li>Named the first column as ID.</li>
+									<li>Replaced job_title as Position</li>
+									<li>Replaced acronyms in Experience, Employment type and Company size columns with more descriptive values.</li>
+									<li>Imported and merged an ISO 3166 country code table and replaced the country codes with the country names.</li>
+									<li>Removed non-USD salary columns.</li>
+								</ol>	
+								<b>4. Results</b>
+								<br/>I used pivot tables to answer questions 1-8, from which I created the pivot charts for question 9.
+								<br/>
+								<br>1. Which role has the highest salary employment wise?
+								<br/>Rows: Postition 
+								<br/>Values: Salary (show as Average) 
+								<br/>Filter the Postion based on top 5 Average Salary 
+								<span class="image fit"><img src="images/DIM Data career salary 1.JPG" alt="" /></span>
+								
+								2. Which employment types do employers prefer to hire?
+								<br/>Rows: Employment type 
+								<br/>Values: ID (show as Count) and ID (show as Count of Grand Total)
+								<span class="image fit"><img src="images/DIM Data career salary 2.JPG" alt="" /></span>
+								
+								3. Which role are entry leveled generally hired for?
+								<br/>Filter: Experience level = Junior 
+								<br/>Rows: Position 
+								<br/>Values: ID (show as Count) 
+								<br/>Filter Postion based on top 5 ID Count
+								<span class="image fit"><img src="images/DIM Data career salary 3.JPG" alt="" /></span>
+								
+								4. Which countries pay the highest for which roles?
+								<br/>Rows: Company location then Position 
+								<br/>Values: Salary (show as Average) 
+								<br/>Filter the Postion based on top 1 Average Salary 
+								<br/>Filter the Company location based on top 1 Average Salary 
+								<span class="image fit"><img src="images/DIM Data career salary 4.JPG" alt="" /></span>
+								
+								5. What insights can you find regarding employee demographics?
+								<br/>Rows: Employee residence 
+								<br/>Values: ID (show as Count) 
+								<br/>Filter Employee residence based on top 7 ID Count
+								<span class="image fit"><img src="images/DIM Data career salary 5.JPG" alt="" /></span>
+								
+								6. Which experience level has the highest hiring?
+								<br/>Rows: Experience 
+								<br/>Values: ID (show as Count) 
+								<br/>Filter Postion based on top 5 ID Count
+								<span class="image fit"><img src="images/DIM Data career salary 6.JPG" alt="" /></span>
+								
+								7. Does company size affect the rate of hiring and pay scale?
+								<br/>Rows: Company size 
+								<br/>Columns: Work year 
+								<br/>Values: ID (show as Count)
+								<span class="image fit"><img src="images/DIM Data career salary 7.1.JPG" alt="" /></span>
+								Rows: Experience 
+								<br/>Columns: Company size 
+								<br/>Values: Salary (show as Average)
+								<span class="image fit"><img src="images/DIM Data career salary 7.2.JPG" alt="" /></span>
+								
+								8. What is the year over year (YoY) salary growth at different levels?
+								<br/>Rows: Work year 
+								<br/>Columns: Experience 
+								<br/>Values: Salary (show as Average as Percentage of Previous Work year)								
+								<span class="image fit"><img src="images/DIM Data career salary 8.JPG" alt="" /></span>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:caominh1701@gmail.com">caominh1701@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/cm-n/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/caominh-nguyen" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Cao Minh Nguyen</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
