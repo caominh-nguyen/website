@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Challenge 12: Data Science Job Salaries</title>
+		<title>Challenge 1: Chipotle Sales</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -50,42 +50,79 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<span class="date">May 22, 2023</span>
-									<h1>Challenge 12: Data Science Job Salaries</h1>
+									<span class="date">Feb 27, 2023</span>
+									<h1>Challenge 1: Chipotle Sales</h1>
 								</header>
-								<iframe src="https://onedrive.live.com/embed?cid=DED35BC78985758F&resid=DED35BC78985758F%212371&authkey=AEYlhnHVFR1pwts&em=2" width="1200" height="1100" frameborder="0" scrolling="no"></iframe>								
-								<br/><a href="https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries">Dataset on Kaggle</a> - See challenge questions below.
+								<iframe src="https://onedrive.live.com/embed?cid=DED35BC78985758F&resid=DED35BC78985758F%212373&authkey=ALka29A1YYfnXWM&em=2" width="1200" height="950" frameborder="0" scrolling="no"></iframe>								<br/><a href="https://raw.githubusercontent.com/justmarkham/DAT8/master/data/chipotle.tsv">Dataset</a> - See challenge questions below.
 								<br/><a href="https://github.com/caominh-nguyen/portfolio">Link to GitHub repository</a>, including data and final output.
 								<br/>Click the bottom right corner of the window above to view in full-screen mode.
 								<br/>
 								<br/>
 								<b>1. About the dataset</b>
-								<br/>The dataset contains a table of records for data science positions and related information, such as salary, location, year recorded, experience level. A copy of the data dictionary is below.
-								<span class="image fit"><img src="images/DIM Data career salary dictionary.JPG" alt="" /></span>
+								<br/>The dataset contains a table of sales transaction at a Chipotle restaurant. A copy of the data dictionary is below.
+								<br/>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Column</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>order_id</td>
+												<td>The ID of each order (not unqiue).</td>
+											</tr>
+											<tr>
+												<td>quantity</td>
+												<td>Number of item_name ordered.</td>
+											</tr>
+											<tr>
+												<td>item_name</td>
+												<td>Name of the item ordered.</td>
+											</tr>
+											<tr>
+												<td>choice_description</td>
+												<td>Ingredients in the item_name.</td>
+											</tr>
+											<tr>
+												<td>item_price</td>
+												<td>Selling price of the item_name.</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 								<b>2. Challenge questions</b>
 								<br/> There are nine questions in total, querying different aspects of the dataset.
 								<ol>	
-									<li>Which role has the highest salary employment wise?</li>
-									<li>Which employment types do employers prefer to hire?</li>
-									<li>Which role are entry leveled generally hired for?</li>
-									<li>Which countries pay the highest for which roles?</li>
-									<li>What insights can you find regarding employee demographics?</li>
-									<li>Which experience level has the highest hiring?</li>
-									<li>Does company size affect the rate of hiring and pay scale?</li>
-									<li>What is the year over year (YoY) salary growth at different levels?</li>
-									<li>Create a dashboard to summarize your insights.</li>
+									<li>Which was the most-ordered item?
+									</li>
+									<li>For the most-ordered item, how many items were ordered?
+									</li>
+									<li>What was the most ordered item in the choice_description column?
+									</li>
+									<li>How many items were ordered in total?
+									</li>
+									<li>Turn the item price into a float
+									</li>
+									<li>How much was the revenue for the period in the dataset?
+									</li>
+									<li>How many orders were made in the period?
+									</li>
+									<li>What is the average revenue amount per order?
+									</li>
+									<li>How many different items are sold?
+									</li>
 								</ol>
 								<b>3. Data cleaning and transformation</b>
 								<ol>
-									<li>After importing the dataset to the Power Query Editor, double-checked the data type, distribution, and values matching the data dictionary.</li>
-									<li>Named the first column as ID.</li>
-									<li>Replaced job_title as Position</li>
-									<li>Replaced acronyms in Experience, Employment type and Company size columns with more descriptive values.</li>
-									<li>Imported and merged an ISO 3166 country code table and replaced the country codes with the country names.</li>
-									<li>Removed non-USD salary columns.</li>
+									<li>Imported the dataset using the link provided through Power Query, checked for null and error values.</li>
+									<li>Removed "[" and "]" in the item_description column.</li>
+									<li>Replaced "-" with " " in the item_name column.</li>
 								</ol>	
 								<b>4. Results</b>
-								<br/>Questions 1-8 were answered using Pivot tables (Summary Tab), from which I created the pivot charts for question 9 (Dashboard tab).
+								<br/>Each answer had its own Query as presented in the Summary Tab.
 							</section>
 
 					</div>
